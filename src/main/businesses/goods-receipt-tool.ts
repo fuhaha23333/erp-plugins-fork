@@ -222,6 +222,8 @@ export function normalizeGoodsReceiptSubmission(
   const fieldEvidence = normalizedEvidence(submission, pageCount)
 
   if (!header.supplierName) review.push('未识别到销售方或供应商名称')
+  if (!header.carrierName) review.push('票据未提供承运单位，请由收货人员在 ERP 中补充')
+  if (!header.transportMethod) review.push('票据未提供承运方式，请由收货人员在 ERP 中补充')
   if (items.length === 0) review.push('未识别到可用商品明细')
   items.forEach((item, index) => {
     if (item.arrivalQuantity === null && item.receiptQuantity === null) {

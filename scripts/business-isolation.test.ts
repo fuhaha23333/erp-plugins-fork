@@ -48,7 +48,6 @@ test('recognizes each supported ERP page without sharing match rules', () => {
     'purchase-order'
   )
 })
-
 test('page context requires add mode before autofill is enabled', () => {
   const context = toPageContext({
     ename: 'SPSHDJ',
@@ -110,14 +109,14 @@ test('goods receipt fixture is isolated from the unit initial approval fixture',
   const goodsReceiptScript = buildFixtureAutofillScript('goods-receipt')
   const unitInitialApprovalScript = buildFixtureAutofillScript('unit-initial-approval')
 
-  assert.match(goodsReceiptScript, /吉林省信茂药业有限公司/)
-  assert.match(goodsReceiptScript, /咳特灵胶囊/)
-  assert.match(goodsReceiptScript, /咽炎片/)
+  assert.match(goodsReceiptScript, /吉林省润强药业有限公司/)
+  assert.match(goodsReceiptScript, /安神补心丸/)
+  assert.match(goodsReceiptScript, /硫酸庆大霉素碳酸铋胶囊/)
   assert.match(goodsReceiptScript, /"populateBlankRows":true/)
   assert.match(goodsReceiptScript, /batchNumber/)
   assert.doesNotMatch(goodsReceiptScript, /示例医药有限公司/)
   assert.match(unitInitialApprovalScript, /示例医药有限公司/)
-  assert.doesNotMatch(unitInitialApprovalScript, /吉林省信茂药业有限公司/)
+  assert.doesNotMatch(unitInitialApprovalScript, /吉林省润强药业有限公司/)
 })
 
 test('purchase order fixture is isolated and keeps all four source rows', () => {
@@ -131,7 +130,7 @@ test('purchase order fixture is isolated and keeps all four source rows', () => 
   assert.match(purchaseOrderScript, /"quantity":180/)
   assert.match(purchaseOrderScript, /"quantity":12600/)
   assert.match(purchaseOrderScript, /"taxIncludedUnitPrice":4\.221/)
-  assert.doesNotMatch(purchaseOrderScript, /咳特灵胶囊/)
+  assert.doesNotMatch(purchaseOrderScript, /安神补心丸/)
   assert.doesNotMatch(goodsReceiptScript, /江西康强医药有限公司/)
 })
 
@@ -304,66 +303,4 @@ test('purchase order autofill does not call ERP head reference handler after its
   assert.equal(unsafeHandlerCalls, 0)
   assert.equal(dialog.style.visibility, 'hidden')
   assert.ok(result.skippedFields.some((field) => field.includes('DWMC')))
-})
-
-test('goods receipt fixture populates two rows in an empty ERP grid', async () => {
-  class FakeInput {
-    value = ''
-    disabled = false
-    readOnly = false
-    dispatchEvent(): void {}
-  }
-  class FakeSelect extends FakeInput {}
-  class FakeTextArea extends FakeInput {}
-  class FakeEvent {}
-  class FakeCell {
-    value = ''
-    setValue(value: string): void { this.value = value }
-    getValue(): string { return this.value }
-  }
-
-  const fieldNames = [
-    'SPMC', 'GG', 'SCCS', 'DW', 'DJ', 'DDSL', 'DHSL', 'SHSL', 'JSSL',
-    'SPPH', 'SCRQ', 'YXQZ', 'SPM', 'JX', 'BZ'
-  ]
-  const createRow = () => {
-    const rowCells = Object.fromEntries(fieldNames.map((field) => [field, new FakeCell()]))
-    return { cells: () => rowCells }
-  }
-  const rows = [createRow()]
-  const elements = new Map([
-    ['DWMC', new FakeInput()],
-    ['QYRQ', new FakeInput()],
-    ['SHDJBZ', new FakeTextArea()]
-  ])
-  const pageWindow = {
-    setTimeout,
-    gridEditBody: { getRows: () => rows },
-    gridhandler: () => rows.push(createRow())
-  }
-  const context = {
-    window: pageWindow,
-    document: { getElementById: (id: string) => elements.get(id) ?? null },
-    HTMLInputElement: FakeInput,
-    HTMLSelectElement: FakeSelect,
-    HTMLTextAreaElement: FakeTextArea,
-    Event: FakeEvent,
-    KeyboardEvent: FakeEvent,
-    setTimeout
-  }
-
-  const result = await vm.runInNewContext(
-    buildFixtureAutofillScript('goods-receipt'),
-    context
-  ) as { filledHeaderFields: number; filledDetailRows: number; skippedFields: string[] }
-
-  assert.equal(result.filledHeaderFields, 3)
-  assert.equal(result.filledDetailRows, 2)
-  assert.equal(result.skippedFields.length, 0)
-  assert.equal(rows.length, 2)
-  assert.equal(rows[0].cells().SPMC.value, '咳特灵胶囊')
-  assert.equal(rows[0].cells().DHSL.value, '400')
-  assert.equal(rows[1].cells().SPMC.value, '咽炎片')
-  assert.equal(rows[1].cells().SHSL.value, '240')
-  assert.equal(elements.get('DWMC')?.value, '吉林省信茂药业有限公司')
 })

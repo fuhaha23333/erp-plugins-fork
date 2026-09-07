@@ -1,19 +1,19 @@
 import unitInitialApprovalFixture from '../../test-data/unit-initial-approval.example.json'
-import goodsReceiptFixture from '../../test-data/goods-receipt.example.json'
 import purchaseOrderFixture from '../../test-data/purchase-order.example.json'
 import type { ErpAutofillResult } from '../shared/erp'
 import type {
   BusinessExtraction,
   BusinessId,
-  GoodsReceiptExtraction,
-  GoodsReceiptHeader,
-  GoodsReceiptItem,
   PurchaseOrderExtraction,
   PurchaseOrderHeader,
   PurchaseOrderItem,
   UnitInitialApprovalExtraction,
   UnitInitialApprovalHeader
 } from '../shared/business'
+import {
+  buildGoodsReceiptExtractedAutofillScript,
+  buildGoodsReceiptFixtureAutofillScript
+} from './businesses/goods-receipt-autofill'
 
 interface QualificationRow {
   dataType: string
@@ -280,200 +280,6 @@ async function runUnitInitialApprovalAutofill(payload: AutofillPayload): Promise
     if (completed) {
       filledDetailRows += 1
     }
-  }
-
-  return { filledHeaderFields, filledDetailRows, skippedFields }
-}
-
-interface GoodsReceiptAutofillPayload {
-  supplierName: string | null
-  header: Record<string, string>
-  items: GoodsReceiptItem[]
-  populateBlankRows: boolean
-}
-
-function buildGoodsReceiptPayload(
-  header: GoodsReceiptHeader,
-  items: GoodsReceiptItem[],
-  populateBlankRows = false
-): GoodsReceiptAutofillPayload {
-  const candidates: Record<string, string | number | null> = {
-    QYRQ: header.departureDate,
-    CYDW: header.carrierName,
-    CYFS: header.transportMethod,
-    SHRQ1: header.receiptDateTime,
-    WBWD: header.surfaceTemperature,
-    YSFS: header.transportVehicle,
-    qydd: header.departurePlace,
-    QYRS: header.departureDateTime,
-    SHSJ: header.receiptDateTimeDetail,
-    SJYSSJ: header.actualTransportHours,
-    SHDJBZ: header.receiptRemark
-  }
-  return {
-    supplierName: header.supplierName,
-    header: Object.fromEntries(
-      Object.entries(candidates)
-        .filter((entry): entry is [string, string | number] => entry[1] !== null && entry[1] !== '')
-        .map(([key, value]) => [key, String(value)])
-    ),
-    items,
-    populateBlankRows
-  }
-}
-
-function buildGoodsReceiptFixturePayload(): GoodsReceiptAutofillPayload {
-  const fixturePayload = goodsReceiptFixture.erpPayload
-  return buildGoodsReceiptPayload(
-    fixturePayload.header as GoodsReceiptHeader,
-    fixturePayload.items.map((item) => ({ ...item, sourcePages: [1] })) as GoodsReceiptItem[],
-    true
-  )
-}
-
-async function runGoodsReceiptAutofill(
-  payload: GoodsReceiptAutofillPayload
-): Promise<PageAutofillResult> {
-  const pageWindow = window as ErpPageWindow
-  const skippedFields: string[] = []
-  let filledHeaderFields = 0
-
-  const setElementValue = (fieldId: string, value: string): boolean => {
-    const element = document.getElementById(fieldId)
-    if (!(element instanceof HTMLInputElement || element instanceof HTMLSelectElement || element instanceof HTMLTextAreaElement)) {
-      skippedFields.push(fieldId)
-      return false
-    }
-    if (element.disabled || (!(element instanceof HTMLSelectElement) && element.readOnly)) {
-      skippedFields.push(`${fieldId}（只读或已禁用）`)
-      return false
-    }
-    element.value = value
-    element.dispatchEvent(new Event('input', { bubbles: true }))
-    element.dispatchEvent(new Event('change', { bubbles: true }))
-    element.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true, key: 'Unidentified' }))
-    return true
-  }
-
-  for (const [fieldId, value] of Object.entries(payload.header)) {
-    if (setElementValue(fieldId, value)) filledHeaderFields += 1
-  }
-
-  if (payload.supplierName) {
-    if (payload.populateBlankRows) {
-      if (setElementValue('DWMC', payload.supplierName)) filledHeaderFields += 1
-    } else {
-      const supplierElement = document.getElementById('DWMC')
-      const currentSupplier = supplierElement instanceof HTMLInputElement
-        ? supplierElement.value.trim()
-        : ''
-      if (currentSupplier !== payload.supplierName.trim()) {
-        skippedFields.push(`单位名称（请通过ERP参照选择“${payload.supplierName}”）`)
-      }
-    }
-  }
-
-  const grid = pageWindow.gridEditBody
-  if (!grid) {
-    skippedFields.push('商品明细表（ERP网格尚未就绪）')
-    return { filledHeaderFields, filledDetailRows: 0, skippedFields }
-  }
-
-  const normalize = (value: unknown): string => String(value ?? '').replace(/\s+/g, '').trim()
-  const cellValue = (cell: GridCell | undefined): unknown => {
-    if (!cell) return ''
-    if (typeof cell.getValue === 'function') return cell.getValue()
-    return cell.value ?? ''
-  }
-  const wait = (milliseconds: number): Promise<void> =>
-    new Promise((resolve) => window.setTimeout(resolve, milliseconds))
-  const waitForRowCount = async (expectedCount: number): Promise<boolean> => {
-    const deadline = Date.now() + 10000
-    while (Date.now() < deadline) {
-      if ((pageWindow.gridEditBody?.getRows().length ?? 0) >= expectedCount) return true
-      await wait(100)
-    }
-    return false
-  }
-
-  if (payload.populateBlankRows) {
-    const addGridRow = pageWindow.gridhandler
-    if (!addGridRow && grid.getRows().length < payload.items.length) {
-      skippedFields.push('商品明细表（无法新增测试行）')
-    } else {
-      while (grid.getRows().length < payload.items.length && addGridRow) {
-        const expectedCount = grid.getRows().length + 1
-        addGridRow.call(pageWindow, 'add', 'B')
-        if (!(await waitForRowCount(expectedCount))) {
-          skippedFields.push(`商品明细第${expectedCount}行（新增超时）`)
-          break
-        }
-      }
-    }
-  }
-
-  const rows = grid.getRows()
-  const usedRows = new Set<GridRow>()
-  let filledDetailRows = 0
-
-  for (let itemIndex = 0; itemIndex < payload.items.length; itemIndex += 1) {
-    const item = payload.items[itemIndex]
-    let row = rows.find((candidate) => {
-      if (usedRows.has(candidate)) return false
-      const cells = candidate.cells()
-      return normalize(cellValue(cells.SPMC)) === normalize(item.productName)
-    })
-    if (!row && payload.populateBlankRows) {
-      row = rows.find((candidate) => {
-        if (usedRows.has(candidate)) return false
-        return normalize(cellValue(candidate.cells().SPMC)) === ''
-      }) ?? rows.find((candidate) => !usedRows.has(candidate))
-    }
-    if (!row) {
-      skippedFields.push(`商品“${item.productName}”（请先在ERP中选择对应采购订单商品）`)
-      continue
-    }
-    usedRows.add(row)
-
-    const cells = row.cells()
-    let changed = false
-    const values: Record<string, string | null> = payload.populateBlankRows
-      ? {
-          SPMC: item.productName,
-          GG: item.specification,
-          SCCS: item.manufacturer,
-          DW: item.unit,
-          DJ: item.unitPrice === null ? null : String(item.unitPrice),
-          DDSL: item.packageQuantity === null ? null : String(item.packageQuantity),
-          DHSL: item.arrivalQuantity === null ? null : String(item.arrivalQuantity),
-          SHSL: item.receiptQuantity === null ? null : String(item.receiptQuantity),
-          JSSL: '0',
-          SPPH: item.batchNumber,
-          SCRQ: item.productionDate,
-          YXQZ: item.expiryDate,
-          SPM: item.productName,
-          JX: item.dosageForm,
-          BZ: item.remark
-        }
-      : {
-          DHSL: item.arrivalQuantity === null ? null : String(item.arrivalQuantity),
-          SHSL: item.receiptQuantity === null ? null : String(item.receiptQuantity),
-          BZ: item.remark
-        }
-    const criticalFields = new Set(payload.populateBlankRows ? ['SPMC', 'DHSL', 'SHSL'] : ['DHSL', 'SHSL'])
-    for (const [fieldName, value] of Object.entries(values)) {
-      if (value === null || value === '') continue
-      const cell = cells[fieldName]
-      if (!cell) {
-        if (criticalFields.has(fieldName)) {
-          skippedFields.push(`商品“${item.productName}”.${fieldName}`)
-        }
-        continue
-      }
-      cell.setValue(value)
-      if (criticalFields.has(fieldName)) changed = true
-    }
-    if (changed) filledDetailRows += 1
   }
 
   return { filledHeaderFields, filledDetailRows, skippedFields }
@@ -913,7 +719,7 @@ export function buildFixtureAutofillScript(businessId: BusinessId): string {
     return `(${runPurchaseOrderAutofill.toString()})(${JSON.stringify(buildPurchaseOrderFixturePayload())})`
   }
   if (businessId === 'goods-receipt') {
-    return `(${runGoodsReceiptAutofill.toString()})(${JSON.stringify(buildGoodsReceiptFixturePayload())})`
+    return buildGoodsReceiptFixtureAutofillScript()
   }
   return `(${runUnitInitialApprovalAutofill.toString()})(${JSON.stringify(buildUnitInitialApprovalFixturePayload())})`
 }
@@ -924,8 +730,7 @@ export function buildExtractedAutofillScript(extraction: BusinessExtraction): st
     return `(${runPurchaseOrderAutofill.toString()})(${JSON.stringify(payload)})`
   }
   if (extraction.documentType === 'goods-receipt') {
-    const payload = buildGoodsReceiptPayload(extraction.header, extraction.items)
-    return `(${runGoodsReceiptAutofill.toString()})(${JSON.stringify(payload)})`
+    return buildGoodsReceiptExtractedAutofillScript(extraction)
   }
   const payload = buildAutofillPayload(extraction.header, extraction.qualificationRows)
   return `(${runUnitInitialApprovalAutofill.toString()})(${JSON.stringify(payload)})`
