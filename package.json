@@ -19,6 +19,8 @@
     "test:incremental-extraction": "esbuild scripts/incremental-extraction.test.ts --bundle --platform=node --format=esm --outfile=tmp/incremental-extraction.test.mjs && node --test tmp/incremental-extraction.test.mjs",
     "test:business-isolation": "esbuild scripts/business-isolation.test.ts --bundle --platform=node --format=esm --outfile=tmp/business-isolation.test.mjs && node --test tmp/business-isolation.test.mjs",
     "test:goods-receipt": "esbuild scripts/goods-receipt.test.ts --bundle --platform=node --format=esm --outfile=tmp/goods-receipt.test.mjs && node --test tmp/goods-receipt.test.mjs",
+    "test:goods-receipt:document": "node scripts/test-goods-receipt-document.mjs",
+    "test:document-images": "node --test scripts/document-images.test.mjs",
     "test:purchase-order": "esbuild scripts/purchase-order.test.ts --bundle --platform=node --format=esm --outfile=tmp/purchase-order.test.mjs && node --test tmp/purchase-order.test.mjs",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",
     "build": "npm run typecheck && electron-vite build",

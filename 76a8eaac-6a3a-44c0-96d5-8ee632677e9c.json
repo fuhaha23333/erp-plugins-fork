@@ -1,0 +1,1274 @@
+{
+  "task_id": "76a8eaac-6a3a-44c0-96d5-8ee632677e9c",
+  "status": "success",
+  "script": {
+    "stage": {
+      "id": "2ec3700777",
+      "name": "2026年中国东盟人工智能产业发展研究报告",
+      "languageDirective": "使用简体中文进行教学。所有内容以中文呈现。",
+      "videoManifest": {},
+      "style": "interactive",
+      "createdAt": 1787559328524,
+      "updatedAt": 1787559328524,
+      "agentIds": [
+        "default-1",
+        "default-2",
+        "default-3",
+        "default-4",
+        "default-5",
+        "default-6"
+      ]
+      },
+    "scenes": [
+      {
+        "id": "scene_7a1c4e9b20",
+        "stageId": "8f31c6a2d9",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 1,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_1f8a3c7d52",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_c41d8e2a79",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_01.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_6827657ee8",
+            "type": "robot",
+            "name": "JuGong",
+            "info": "机器人向观众鞠躬，表示尊敬和礼貌。",
+            "usage": "在与观众初次见面或告别时使用。一般在课堂的开始之前和结束之后使用。",
+            "is_independent": true
+          },
+          {
+            "id": "action_0314e53858",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_91b7e3c46a",
+            "type": "speech",
+            "text": "各位嘉宾：大家好！下面由我发布《2026年中国—东盟人工智能产业发展研究报告》。",
+            "text_v1": "各位嘉宾：大家好！下面由我发布《2026年中国—东盟人工智能产业发展研究报告》。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "各位嘉宾：",
+                "voice_prompt": "心理活动：开场致意、稳住全场； 细腻表情：目光平视扫过前排、微微颔首； 肢体动作：双手轻搭讲台、身体端正； 语气节奏：起音平稳、尾字收住； 重音词：各位嘉宾；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "tender",
+                  "emotion_intensity": 0.55,
+                  "break_time": 500,
+                  "rate": -6,
+                  "volume": 8,
+                  "pitch": 1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "大家好！",
+                "voice_prompt": "心理活动：以亲和力打开场面； 细腻表情：眼神明亮、嘴角上扬； 肢体动作：右手轻抬示意、身体微前倾； 语气节奏：轻快上扬、干净利落； 重音词：大家好；",
+                "context": "各位嘉宾：",
+                "extra_params": {
+                  "emotion": "happy",
+                  "emotion_intensity": 0.62,
+                  "break_time": 560,
+                  "rate": 2,
+                  "volume": 16,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "下面由我发布《2026年中国—东盟人工智能产业发展研究报告》。",
+                "voice_prompt": "心理活动：正式宣示成果、把分量压住； 细腻表情：目光定住大屏、神情郑重； 肢体动作：手掌向大屏平推、停顿定格； 语气节奏：压慢加重、字字落地； 重音词：发布，研究报告；",
+                "context": "大家好！",
+                "extra_params": {
+                  "emotion": "excited",
+                  "emotion_intensity": 0.68,
+                  "break_time": 720,
+                  "rate": -11,
+                  "volume": 38,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          }
+        ],
+        "layoutRegions": []
+      },
+      {
+        "id": "scene_b83f6d2a51",
+        "stageId": "14be79d5c0",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 2,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_6b20e91a4f",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_5f9b307c16",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_02.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_42b283c01e",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_27b8e84ce0",
+            "type": "speech",
+            "text": "本报告覆盖中国与东盟十国，系统梳理区域 AI 产业的政策环境、市场规模、基建能力与应用格局，研判发展趋势与合作机遇，为企业开拓东盟市场、深化跨境协同提供决策参考。",
+            "text_v1": "本报告覆盖中国与东盟十国，系统梳理区域 AI 产业的政策环境、市场规模、基建能力与应用格局，研判发展趋势与合作机遇，为企业开拓东盟市场、深化跨境协同提供决策参考。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "本报告覆盖中国与东盟十国，",
+                "voice_prompt": "心理活动：交代研究范围、建立可信度； 细腻表情：目光平缓扫场； 肢体动作：手掌横向展开一次； 语气节奏：平稳推进、留出短停； 重音词：中国与东盟十国；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.62,
+                  "break_time": 460,
+                  "rate": -5,
+                  "volume": 6,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "系统梳理区域 AI 产业的政策环境、市场规模、基建能力与应用格局，研判发展趋势与合作机遇，",
+                "voice_prompt": "心理活动：罗列研究维度、条理清楚； 细腻表情：眉眼放松、语气条分缕析； 肢体动作：手指随节点轻点空中； 语气节奏：中段连读、节点轻托； 重音词：政策环境，市场规模，发展趋势；",
+                "context": "本报告覆盖中国与东盟十国，",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.6,
+                  "break_time": 540,
+                  "rate": -3,
+                  "volume": 5,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "为企业开拓东盟市场、深化跨境协同提供决策参考。",
+                "voice_prompt": "心理活动：点明报告价值、收住这一层； 细腻表情：目光收回中路、轻轻颔首； 肢体动作：双手下压收势； 语气节奏：放慢收句、落音沉稳； 重音词：决策参考；",
+                "context": "系统梳理区域 AI 产业的政策环境、市场规模、基建能力与应用格局，研判发展趋势与合作机遇，",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.62,
+                  "break_time": 600,
+                  "rate": -5,
+                  "volume": 7,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          },
+          {
+            "id": "action_eed62e31c5",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_2d8f50a1c7",
+            "type": "speech",
+            "text": "当前，中国—东盟人工智能产业呈现“双核心引领、多梯队追赶”的发展特征。",
+            "text_v1": "当前，中国—东盟人工智能产业呈现“双核心引领、多梯队追赶”的发展特征。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "当前，",
+                "voice_prompt": "心理活动：切入现状判断、引出总括； 细腻表情：眼神一凝； 肢体动作：右手微抬示意； 语气节奏：轻起短停、把后半句托出来； 重音词：当前；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.5,
+                  "break_time": 420,
+                  "rate": -3,
+                  "volume": 30,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "中国—东盟人工智能产业呈现“双核心引领、多梯队追赶”的发展特征。",
+                "voice_prompt": "心理活动：给出总体判断、稳住结论； 细腻表情：目光沉着、语气笃定； 肢体动作：两掌前后错开示意层次； 语气节奏：中速推进、结尾落定； 重音词：双核心引领，多梯队追赶；",
+                "context": "当前，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.42,
+                  "break_time": 780,
+                  "rate": -5,
+                  "volume": 4,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          }
+        ],
+        "layoutRegions": []
+      },
+      {
+        "id": "scene_4d92ac7e63",
+        "stageId": "c6720af418",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 3,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_d47c5b803e",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_a26e7d54b3",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_03.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_f35507bf53",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_158bbc2405",
+            "type": "speech",
+            "text": "从市场规模来看，区域 AI 产业保持强劲增长态势。",
+            "text_v1": "从市场规模来看，区域 AI 产业保持强劲增长态势。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "从市场规模来看，",
+                "voice_prompt": "心理活动：进入数据板块、提振气势； 细腻表情：眉梢上挑、眼神发亮； 肢体动作：手掌向大屏一引； 语气节奏：压慢加重、音量顶上去； 重音词：市场规模；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "excited",
+                  "emotion_intensity": 0.7,
+                  "break_time": 500,
+                  "rate": -10,
+                  "volume": 36,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "区域 AI 产业保持强劲增长态势。",
+                "voice_prompt": "心理活动：宣示增长成果、情绪顶到高点； 细腻表情：目光扫过全场、神情有力； 肢体动作：右手握拳轻顿一次； 语气节奏：最慢档配大音量、重锤收句； 重音词：强劲增长；",
+                "context": "从市场规模来看，",
+                "extra_params": {
+                  "emotion": "excited",
+                  "emotion_intensity": 0.72,
+                  "break_time": 840,
+                  "rate": -12,
+                  "volume": 38,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          },
+          {
+            "id": "action_509948ff5c",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_b9911ab5d2",
+            "type": "speech",
+            "text": "2026 年，中国—东盟人工智能产业市场规模预计达到 6532.5 亿元，同比增长 16.2%。",
+            "text_v1": "2026 年，中国—东盟人工智能产业市场规模预计达到 6532.5 亿元，同比增长 16.2%。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "2026年，",
+                "voice_prompt": "心理活动：为关键数据蓄势、引而不发； 细腻表情：目光定住、嘴角轻抿； 肢体动作：手掌虚按、示意稍候； 语气节奏：骤然压低放慢、长留白顶出数字； 重音词：2026 年；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.6,
+                  "break_time": 800,
+                  "rate": -7,
+                  "volume": -12,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "中国—东盟人工智能产业市场规模预计达到",
+                "voice_prompt": "心理活动：铺垫口径、把听众注意力引到数字上； 细腻表情：眼神专注、语气克制； 肢体动作：手掌向大屏缓缓平推； 语气节奏：低起慢推、末字略拖等数字； 重音词：市场规模；",
+                "context": "2026年，",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.63,
+                  "break_time": 300,
+                  "rate": -9,
+                  "volume": -10,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "6532.5亿元，",
+                "voice_prompt": "心理活动：抛出核心数字、逐字咬实； 细腻表情：目光扫向全场、下颌微收； 肢体动作：手指在空中点出数位； 语气节奏：单独成段、慢读加重、音量抬起； 重音词：6532.5 亿元；",
+                "context": "中国—东盟人工智能产业市场规模预计达到",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.68,
+                  "break_time": 480,
+                  "rate": -9,
+                  "volume": 70,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 3,
+                "text": "同比增长",
+                "voice_prompt": "心理活动：引出增速、短促铺垫； 细腻表情：眉梢轻抬； 肢体动作：右手向上一提； 语气节奏：轻托一下、把百分比让出来； 重音词：同比增长；",
+                "context": "6532.5亿元，",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.66,
+                  "break_time": 310,
+                  "rate": -9,
+                  "volume": -6,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 4,
+                "text": "16.2%。",
+                "voice_prompt": "心理活动：把增速作为落点、稳稳压住； 细腻表情：目光抬起看向听众； 肢体动作：手掌向上一托后收回； 语气节奏：单独成段、最慢读法、落音收束； 重音词：16.2%；",
+                "context": "同比增长",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.7,
+                  "break_time": 820,
+                  "rate": -5,
+                  "volume": 50,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          },
+          {
+            "id": "action_3430bc90c4",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_1242be9fb2",
+            "type": "speech",
+            "text": "其中，中国市场占区域总量的 75%，筑牢规模基本盘；东盟市场同比增长 23.7%，增长动能更为突出，算力基础设施与模型服务成为核心增长动力。",
+            "text_v1": "其中，中国市场占区域总量的 75%，筑牢规模基本盘；东盟市场同比增长 23.7%，增长动能更为突出，算力基础设施与模型服务成为核心增长动力。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "其中，中国市场占区域总量的",
+                "voice_prompt": "心理活动：拆解结构、先说基本盘； 细腻表情：神情沉稳、目光平视； 肢体动作：左手掌心向下示意底盘； 语气节奏：平稳铺垫、末字轻托等数字； 重音词：中国市场；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.58,
+                  "break_time": 320,
+                  "rate": -5,
+                  "volume": 4,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "75%，",
+                "voice_prompt": "心理活动：把占比说实、给出规模底盘； 细腻表情：目光定住一瞬； 肢体动作：手掌向下压一次； 语气节奏：单独成段、放慢咬实； 重音词：75%；",
+                "context": "其中，中国市场占区域总量的",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.62,
+                  "break_time": 440,
+                  "rate": -7,
+                  "volume": 55,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "筑牢规模基本盘；",
+                "voice_prompt": "心理活动：给出定性判断、收住这一层； 细腻表情：轻轻颔首； 肢体动作：双手平托稳住； 语气节奏：中速收束、分号处强断； 重音词：基本盘；",
+                "context": "75%，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.6,
+                  "break_time": 580,
+                  "rate": -5,
+                  "volume": 5,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 3,
+                "text": "东盟市场同比增长",
+                "voice_prompt": "心理活动：转向另一侧、准备推出亮点； 细腻表情：目光转向另一侧、眉眼提起； 肢体动作：右手抬起画一道上扬弧线； 语气节奏：轻起铺垫、末字轻托； 重音词：东盟市场；",
+                "context": "筑牢规模基本盘；",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.62,
+                  "break_time": 340,
+                  "rate": -6,
+                  "volume": 6,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 4,
+                "text": "23.7%，",
+                "voice_prompt": "心理活动：抛出亮点增速、语气加分量； 细腻表情：眼神发亮、微微前倾； 肢体动作：食指向上点出一个高点； 语气节奏：单独成段、慢读加重、音量抬起； 重音词：23.7%；",
+                "context": "东盟市场同比增长",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.66,
+                  "break_time": 460,
+                  "rate": -8,
+                  "volume": 60,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 5,
+                "text": "增长动能更为突出，",
+                "voice_prompt": "心理活动：给出对比结论、把话说重； 细腻表情：目光扫过全场； 肢体动作：右手在高处虚按一下； 语气节奏：略放慢、节点轻托； 重音词：更为突出；",
+                "context": "23.7%，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.64,
+                  "break_time": 500,
+                  "rate": -6,
+                  "volume": 7,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 6,
+                "text": "算力基础设施与模型服务成为核心增长动力。",
+                "voice_prompt": "心理活动：归因收束、点出驱动因素； 细腻表情：轻轻颔首确认； 肢体动作：双手并拢向前一送； 语气节奏：中速收句、落音干净； 重音词：算力基础设施，核心增长动力；",
+                "context": "增长动能更为突出，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.6,
+                  "break_time": 780,
+                  "rate": -4,
+                  "volume": 5,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          }
+        ],
+        "layoutRegions": []
+      },
+      {
+        "id": "scene_c16b58f904",
+        "stageId": "59d8e13b7a",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 4,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_83e1a6f92d",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_8c10f6a92d",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_04.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_1466ff9c84",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_38c1d7e5b0",
+            "type": "speech",
+            "text": "产业发展层面，呈现三大核心特征。第一，算力资源加速向核心区域集聚，东盟已形成新加坡、马来西亚、泰国、印度尼西亚“四极并进”的基础设施格局。",
+            "text_v1": "产业发展层面，呈现三大核心特征。第一，算力资源加速向核心区域集聚，东盟已形成新加坡、马来西亚、泰国、印度尼西亚“四极并进”的基础设施格局。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "产业发展层面，",
+                "voice_prompt": "心理活动：切换到特征板块、提示结构； 细腻表情：目光平移、神情放松； 肢体动作：手掌侧立作分栏状； 语气节奏：轻起短停、引出总括； 重音词：产业发展层面；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.55,
+                  "break_time": 440,
+                  "rate": -3,
+                  "volume": 2,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "呈现三大核心特征。",
+                "voice_prompt": "心理活动：立总纲、让听众准备记要点； 细腻表情：目光定住、语气笃定； 肢体动作：三指立起示意三条； 语气节奏：放慢加重、落音留足； 重音词：三大核心特征；",
+                "context": "产业发展层面，",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.68,
+                  "break_time": 860,
+                  "rate": -5,
+                  "volume": 4,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "第一，",
+                "voice_prompt": "心理活动：起第一条、节奏对齐； 细腻表情：眼神清亮； 肢体动作：竖起食指； 语气节奏：干脆轻起、逻辑短停； 重音词：第一；",
+                "context": "呈现三大核心特征。",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.6,
+                  "break_time": 400,
+                  "rate": -2,
+                  "volume": 6,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 3,
+                "text": "算力资源加速向核心区域集聚，",
+                "voice_prompt": "心理活动：陈述趋势、把动词说实； 细腻表情：目光随手势移动； 肢体动作：双手向中间收拢示意集聚； 语气节奏：略放慢、节点轻托； 重音词：加速集聚；",
+                "context": "第一，",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.62,
+                  "break_time": 480,
+                  "rate": -4,
+                  "volume": 8,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 4,
+                "text": "东盟已形成新加坡、马来西亚、泰国、印度尼西亚“四极并进”的基础设施格局。",
+                "voice_prompt": "心理活动：点名四国、把格局说清； 细腻表情：目光依次点过四个方向； 肢体动作：手指在空中点出四个位置； 语气节奏：国名连读带过、格局落定收句； 重音词：四极并进，基础设施格局；",
+                "context": "算力资源加速向核心区域集聚，",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.6,
+                  "break_time": 720,
+                  "rate": -2,
+                  "volume": 7,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          }
+        ],
+        "layoutRegions": []
+      },
+      {
+        "id": "scene_9e37d1a6b8",
+        "stageId": "e4a9276c35",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 5,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_a5d94c2e71",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_d73a4b815e",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_05.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_5c7e7911b9",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_10ddca8b77",
+            "type": "speech",
+            "text": "第二，产业链形成分层共建模式，中国企业主要提供算力硬件、开源基座、模型工具等底层能力，东盟国家依托本地资源，主导场景适配、落地运营与合规交付。",
+            "text_v1": "第二，产业链形成分层共建模式，中国企业主要提供算力硬件、开源基座、模型工具等底层能力，东盟国家依托本地资源，主导场景适配、落地运营与合规交付。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "第二，",
+                "voice_prompt": "心理活动：起第二条、与第一条节奏呼应； 细腻表情：眉眼平稳； 肢体动作：竖起两指； 语气节奏：干脆轻起、逻辑短停； 重音词：第二；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.6,
+                  "break_time": 400,
+                  "rate": 0,
+                  "volume": 6,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "产业链形成分层共建模式，中国企业主要提供算力硬件、开源基座、模型工具等底层能力，",
+                "voice_prompt": "心理活动：说明中方角色、条理分明； 细腻表情：神情专注； 肢体动作：左手掌心向上托住示意底层； 语气节奏：中速连读、结尾轻托； 重音词：分层共建，底层能力；",
+                "context": "第二，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.62,
+                  "break_time": 500,
+                  "rate": -2,
+                  "volume": 5,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "东盟国家依托本地资源，主导场景适配、落地运营与合规交付。",
+                "voice_prompt": "心理活动：说明东盟角色、形成对仗； 细腻表情：目光移向另一侧； 肢体动作：右手掌心向下与左手形成上下层； 语气节奏：与上句对称、收句落定； 重音词：主导，合规交付；",
+                "context": "产业链形成分层共建模式，中国企业主要提供算力硬件、开源基座、模型工具等底层能力，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.6,
+                  "break_time": 740,
+                  "rate": 0,
+                  "volume": 6,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          }
+        ],
+        "layoutRegions": []
+      },
+      {
+        "id": "scene_25af80c3d7",
+        "stageId": "73c05db891",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 6,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_39b7f06c84",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_29e5c0f764",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_06.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_acd41c1637",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_0d62bc2668",
+            "type": "speech",
+            "text": "第三，行业应用进入规模化价值兑现阶段，金融、制造、通信三大赛道率先实现深度落地，评价标准已从模型性能转向流程嵌入效果与可量化经营回报。",
+            "text_v1": "第三，行业应用进入规模化价值兑现阶段，金融、制造、通信三大赛道率先实现深度落地，评价标准已从模型性能转向流程嵌入效果与可量化经营回报。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "第三，",
+                "voice_prompt": "心理活动：起第三条、准备落到成效； 细腻表情：眼神加重； 肢体动作：竖起三指； 语气节奏：干脆轻起、逻辑短停； 重音词：第三；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.6,
+                  "break_time": 400,
+                  "rate": -1,
+                  "volume": 6,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "行业应用进入规模化价值兑现阶段，金融、制造、通信三大赛道率先实现深度落地，",
+                "voice_prompt": "心理活动：强调已见成效、点名赛道； 细腻表情：语气渐重、目光扫场； 肢体动作：手掌逐次点出三个方位； 语气节奏：略放慢加重、节点轻托； 重音词：价值兑现，三大赛道；",
+                "context": "第三，",
+                "extra_params": {
+                  "emotion": "neutral",
+                  "emotion_intensity": 0.65,
+                  "break_time": 520,
+                  "rate": -3,
+                  "volume": 8,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "评价标准已从模型性能转向流程嵌入效果与可量化经营回报。",
+                "voice_prompt": "心理活动：给出判断性结论、把话说重； 细腻表情：目光定住、神情严正； 肢体动作：右手横向一划表示转向； 语气节奏：放慢压稳、落音沉实； 重音词：流程嵌入效果，经营回报；",
+                "context": "行业应用进入规模化价值兑现阶段，金融、制造、通信三大赛道率先实现深度落地，",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.68,
+                  "break_time": 800,
+                  "rate": -5,
+                  "volume": 7,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          }
+        ],
+        "layoutRegions": []
+      },
+      {
+        "id": "scene_f4b6192e05",
+        "stageId": "a168f43e2c",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 7,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_e26a814d5b",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_b68d13a4f2",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_07.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_f400ec4ba1",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_e5196a7c24",
+            "type": "speech",
+            "text": "展望未来，中国—东盟人工智能产业发展将逐步聚焦于本地化适配能力、业务流程嵌入深度与跨国规模化复制水平，整体呈现算力低碳交付、本土语言标准化、多模态智能体普及、企业核心业务落地、区域治理机制成型的发展趋势。",
+            "text_v1": "展望未来，中国—东盟人工智能产业发展将逐步聚焦于本地化适配能力、业务流程嵌入深度与跨国规模化复制水平，整体呈现算力低碳交付、本土语言标准化、多模态智能体普及、企业核心业务落地、区域治理机制成型的发展趋势。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "展望未来，",
+                "voice_prompt": "心理活动：转入趋势研判、先收后放； 细腻表情：目光微垂再抬起； 肢体动作：双手收拢于胸前； 语气节奏：主动压低放慢、长留白蓄势； 重音词：展望未来；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.62,
+                  "break_time": 800,
+                  "rate": -6,
+                  "volume": -14,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "中国—东盟人工智能产业发展将逐步聚焦于本地化适配能力、业务流程嵌入深度与跨国规模化复制水平，",
+                "voice_prompt": "心理活动：给出聚焦方向、语气克制而笃定； 细腻表情：眼神专注、语速稳住； 肢体动作：手指随三个方向轻点； 语气节奏：低音慢推、节点轻托； 重音词：本地化适配，嵌入深度，规模化复制；",
+                "context": "展望未来，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.6,
+                  "break_time": 560,
+                  "rate": -8,
+                  "volume": -12,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "整体呈现算力低碳交付、本土语言标准化、多模态智能体普及、企业核心业务落地、区域治理机制成型的发展趋势。",
+                "voice_prompt": "心理活动：铺陈五项趋势、逐级抬起； 细腻表情：目光缓缓扫过全场； 肢体动作：手掌自左向右平推展开； 语气节奏：并列连读、末句落定收束； 重音词：低碳交付，多模态智能体，治理机制；",
+                "context": "中国—东盟人工智能产业发展将逐步聚焦于本地化适配能力、业务流程嵌入深度与跨国规模化复制水平，",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.62,
+                  "break_time": 800,
+                  "rate": -6,
+                  "volume": -10,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          }
+        ],
+        "layoutRegions": []
+      },
+      {
+        "id": "scene_68d3e7a14c",
+        "stageId": "2bd5940fc7",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 8,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_70c3d9b1f6",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_04fa9c7e35",
+                "type": "image",
+                "left": 0,
+                "top": 0,
+                "width": 1000,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_08.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_0250def41b",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_6f2d90b8e1",
+            "type": "speech",
+            "text": "中国与东盟有望共同构建开放协同、高效务实、创新活跃的人工智能产业生态，广西作为面向东盟开放合作的前沿窗口，依托跨境通信枢纽、数据领域国际合作试点等独特禀赋，正逐步成为中国—东盟 AI 算力流通、数据要素跨境服务、产业项目落地的核心枢纽。",
+            "text_v1": "中国与东盟有望共同构建开放协同、高效务实、创新活跃的人工智能产业生态，广西作为面向东盟开放合作的前沿窗口，依托跨境通信枢纽、数据领域国际合作试点等独特禀赋，正逐步成为中国—东盟 AI 算力流通、数据要素跨境服务、产业项目落地的核心枢纽。",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "中国与东盟有望共同构建开放协同、高效务实、创新活跃的人工智能产业生态，",
+                "voice_prompt": "心理活动：进入愿景宣示、情绪抬升； 细腻表情：目光明亮、神情振奋； 肢体动作：双臂向外舒展示意开放； 语气节奏：压慢加重、音量顶起； 重音词：开放协同，产业生态；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "excited",
+                  "emotion_intensity": 0.66,
+                  "break_time": 560,
+                  "rate": -10,
+                  "volume": 36,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "广西作为面向东盟开放合作的前沿窗口，依托跨境通信枢纽、数据领域国际合作试点等独特禀赋，",
+                "voice_prompt": "心理活动：点出主场优势、把分量压足； 细腻表情：目光坚定、下颌微收； 肢体动作：右手指向大屏区位图； 语气节奏：最慢档配大音量、字字咬实； 重音词：前沿窗口，独特禀赋；",
+                "context": "中国与东盟有望共同构建开放协同、高效务实、创新活跃的人工智能产业生态，",
+                "extra_params": {
+                  "emotion": "excited",
+                  "emotion_intensity": 0.68,
+                  "break_time": 600,
+                  "rate": -12,
+                  "volume": 38,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "正逐步成为中国—东盟 AI 算力流通、数据要素跨境服务、产业项目落地的核心枢纽。",
+                "voice_prompt": "心理活动：全段情绪顶点、宣示枢纽定位； 细腻表情：目光扫过全场并定住； 肢体动作：双手在身前合成一个中心点； 语气节奏：慢而响的重锤收句、留足落定； 重音词：核心枢纽；",
+                "context": "广西作为面向东盟开放合作的前沿窗口，依托跨境通信枢纽、数据领域国际合作试点等独特禀赋，",
+                "extra_params": {
+                  "emotion": "excited",
+                  "emotion_intensity": 0.7,
+                  "break_time": 860,
+                  "rate": -10,
+                  "volume": 40,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          },
+          {
+            "id": "action_ea3b131a04",
+            "type": "robot",
+            "name": "enter_co_speech",
+            "info": "机器人演讲时候的伴随动作",
+            "usage": "演讲时候的手势伴随动作",
+            "is_independent": false
+          },
+          {
+            "id": "action_cfcb62b80d",
+            "type": "speech",
+            "text": "以上就是本次报告的核心内容。完整版《2026 年中国—东盟人工智能产业发展研究报告》请关注广西产业技术研究院公众号相关资讯进行查阅。谢谢各位!",
+            "text_v1": "以上就是本次报告的核心内容。完整版《2026 年中国—东盟人工智能产业发展研究报告》请关注广西产业技术研究院公众号相关资讯进行查阅。谢谢各位!",
+            "text_v2": [
+              {
+                "id": 0,
+                "text": "以上就是本次报告的核心内容。",
+                "voice_prompt": "心理活动：收束全篇、音量回落； 细腻表情：神情放松、轻轻颔首； 肢体动作：双手收回讲台； 语气节奏：放慢落回常态、稳稳收住； 重音词：核心内容；",
+                "context": "",
+                "extra_params": {
+                  "emotion": "magnetic",
+                  "emotion_intensity": 0.65,
+                  "break_time": 600,
+                  "rate": -8,
+                  "volume": 8,
+                  "pitch": -1,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 1,
+                "text": "完整版《2026 年中国—东盟人工智能产业发展研究报告》请关注广西产业技术研究院公众号相关资讯进行查阅。",
+                "voice_prompt": "心理活动：给出查阅指引、轻松清晰； 细腻表情：目光转向大屏二维码方向、面带笑意； 肢体动作：手掌向大屏一引； 语气节奏：轻快带过、信息说清即可； 重音词：完整版，公众号；",
+                "context": "以上就是本次报告的核心内容。",
+                "extra_params": {
+                  "emotion": "storytelling",
+                  "emotion_intensity": 0.55,
+                  "break_time": 760,
+                  "rate": 4,
+                  "volume": 12,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              },
+              {
+                "id": 2,
+                "text": "谢谢各位！",
+                "voice_prompt": "心理活动：真诚致意、干净收场； 细腻表情：微笑、目光扫过全场； 肢体动作：双手交叠于身前、微微鞠躬； 语气节奏：轻快上扬、尾音干脆； 重音词：谢谢；",
+                "context": "完整版《2026 年中国—东盟人工智能产业发展研究报告》请关注广西产业技术研究院公众号相关资讯进行查阅。",
+                "extra_params": {
+                  "emotion": "happy",
+                  "emotion_intensity": 0.65,
+                  "break_time": 800,
+                  "rate": 2,
+                  "volume": 18,
+                  "pitch": 0,
+                  "role": "teacher",
+                  "voice": "S_HL6ISp122"
+                }
+              }
+            ]
+          },
+          {
+            "id": "action_f177b5d3b1",
+            "type": "robot",
+            "name": "JuGong",
+            "info": "机器人向观众鞠躬，表示尊敬和礼貌。",
+            "usage": "在与观众初次见面或告别时使用。一般在课堂的开始之前和结束之后使用。",
+            "is_independent": true
+          }
+        ],
+        "layoutRegions": []
+      }
+    ],
+    "createdAt": "2026-08-24T08:22:19.365662+00:00"
+  }
+}

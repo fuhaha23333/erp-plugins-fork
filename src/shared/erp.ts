@@ -23,7 +23,7 @@ export interface ErpState {
   currentPage: ErpPageContext | null
 }
 
-export type ErpAutofillStatus = 'filled' | 'wrong-page' | 'unavailable' | 'failed'
+export type ErpAutofillStatus = 'filled' | 'partial' | 'wrong-page' | 'unavailable' | 'failed'
 
 export interface ErpAutofillResult {
   status: ErpAutofillStatus

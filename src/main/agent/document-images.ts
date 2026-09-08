@@ -28,6 +28,17 @@ export interface PreparedDocument {
 export interface RenderPageOptions {
   maxDimension?: number
   jpegQuality?: number
+  /** Upscale raster documents for small receipt text; PDFs already render at 2x. */
+  imageScale?: number
+}
+
+/** A bounded header-only retry uses the already selected page, never another page. */
+export async function cropPageHeader(image: PreparedPageImage): Promise<PreparedPageImage> {
+  const source = await loadImage(Buffer.from(image.data, 'base64'))
+  const height = Math.max(1, Math.ceil(source.height / 4))
+  const canvas = createCanvas(source.width, height)
+  canvas.getContext('2d').drawImage(source, 0, 0, source.width, height, 0, 0, source.width, height)
+  return encodeCanvas(canvas)
 }
 
 export interface LocalDocumentPreviewPage {
@@ -111,13 +122,12 @@ async function prepareImage(contents: Buffer): Promise<PreparedDocument> {
   if (image.width * image.height > MAX_SOURCE_PIXELS) {
     throw new Error('图片像素总量超过 8000 万限制')
   }
-  const dimensions = targetDimensions(image.width, image.height)
-
   return {
     pageCount: 1,
     async renderPage(pageNumber, options = {}): Promise<PreparedPageImage> {
       if (pageNumber !== 1) throw new Error('图片文件只有 1 页')
-      const target = targetDimensions(image.width, image.height, options.maxDimension)
+      const scale = options.imageScale ?? 1
+      const target = targetDimensions(image.width * scale, image.height * scale, options.maxDimension)
       const canvas = createCanvas(target.width, target.height)
       const context = canvas.getContext('2d')
       context.fillStyle = '#ffffff'

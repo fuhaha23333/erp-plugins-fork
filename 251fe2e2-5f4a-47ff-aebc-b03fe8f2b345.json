@@ -1,0 +1,475 @@
+{
+  "task_id": "251fe2e2-5f4a-47ff-aebc-b03fe8f2b345",
+  "status": "success",
+  "script": {
+    "stage": {
+      "id": "2ec3700f66",
+      "name": "2026年中国东盟人工智能产业发展研究报告",
+      "languageDirective": "使用简体中文进行教学。所有内容以中文呈现。",
+      "videoManifest": {},
+      "style": "interactive",
+      "createdAt": 1787559328524,
+      "updatedAt": 1787559328524,
+      "agentIds": [
+        "default-1",
+        "default-2",
+        "default-3",
+        "default-4",
+        "default-5",
+        "default-6"
+      ]
+    },
+    "scenes": [
+      {
+        "id": "scene_7a1c4e9b20",
+        "stageId": "8f31c6a2d9",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 1,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_1f8a3c7d52",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_c41d8e2a79",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_01.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_91b7e3c46a",
+            "type": "speech",
+            "text": "各位嘉宾：大家好！下面由我发布《2026年中国—东盟人工智能产业发展研究报告》。",
+            "text_v1": "各位嘉宾：大家好！下面由我发布《2026年中国—东盟人工智能产业发展研究报告》。"
+          }
+        ],
+        "layoutRegions": [
+        ]
+      },
+      {
+        "id": "scene_b83f6d2a51",
+        "stageId": "14be79d5c0",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 2,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_6b20e91a4f",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_5f9b307c16",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_02.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_27b8e84ce0",
+            "type": "speech",
+            "text": "本报告覆盖中国与东盟十国，系统梳理区域 AI 产业的政策环境、市场规模、基建能力与应用格局，研判发展趋势与合作机遇，为企业开拓东盟市场、深化跨境协同提供决策参考。",
+            "text_v1": "本报告覆盖中国与东盟十国，系统梳理区域 AI 产业的政策环境、市场规模、基建能力与应用格局，研判发展趋势与合作机遇，为企业开拓东盟市场、深化跨境协同提供决策参考。"
+          },
+          {
+            "id": "action_2d8f50a1c7",
+            "type": "speech",
+            "text": "当前，中国—东盟人工智能产业呈现“双核心引领、多梯队追赶”的发展特征。",
+            "text_v1": "当前，中国—东盟人工智能产业呈现“双核心引领、多梯队追赶”的发展特征。"
+          }
+        ],
+        "layoutRegions": [
+        ]
+      },
+      {
+        "id": "scene_4d92ac7e63",
+        "stageId": "c6720af418",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 3,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_d47c5b803e",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_a26e7d54b3",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_03.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_158bbc2405",
+            "type": "speech",
+            "text": "从市场规模来看，区域 AI 产业保持强劲增长态势。",
+            "text_v1": "从市场规模来看，区域 AI 产业保持强劲增长态势。"
+          },
+          {
+            "id": "action_b9911ab5d2",
+            "type": "speech",
+            "text": "2026 年，中国—东盟人工智能产业市场规模预计达到 6532.5 亿元，同比增长 16.2%。",
+            "text_v1": "2026 年，中国—东盟人工智能产业市场规模预计达到 6532.5 亿元，同比增长 16.2%。"
+          },
+          {
+            "id": "action_1242be9fb2",
+            "type": "speech",
+            "text": "其中，中国市场占区域总量的 75%，筑牢规模基本盘；东盟市场同比增长 23.7%，增长动能更为突出，算力基础设施与模型服务成为核心增长动力。",
+            "text_v1": "其中，中国市场占区域总量的 75%，筑牢规模基本盘；东盟市场同比增长 23.7%，增长动能更为突出，算力基础设施与模型服务成为核心增长动力。"
+          }
+        ],
+        "layoutRegions": [
+        ]
+      },
+      {
+        "id": "scene_c16b58f904",
+        "stageId": "59d8e13b7a",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 4,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_83e1a6f92d",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_8c10f6a92d",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_04.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_38c1d7e5b0",
+            "type": "speech",
+            "text": "产业发展层面，呈现三大核心特征。第一，算力资源加速向核心区域集聚，东盟已形成新加坡、马来西亚、泰国、印度尼西亚“四极并进”的基础设施格局。",
+            "text_v1": "产业发展层面，呈现三大核心特征。第一，算力资源加速向核心区域集聚，东盟已形成新加坡、马来西亚、泰国、印度尼西亚“四极并进”的基础设施格局。"
+          }
+        ],
+        "layoutRegions": [
+        ]
+      },
+      {
+        "id": "scene_9e37d1a6b8",
+        "stageId": "e4a9276c35",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 5,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_a5d94c2e71",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_d73a4b815e",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_05.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_10ddca8b77",
+            "type": "speech",
+            "text": "第二，产业链形成分层共建模式，中国企业主要提供算力硬件、开源基座、模型工具等底层能力，东盟国家依托本地资源，主导场景适配、落地运营与合规交付。",
+            "text_v1": "第二，产业链形成分层共建模式，中国企业主要提供算力硬件、开源基座、模型工具等底层能力，东盟国家依托本地资源，主导场景适配、落地运营与合规交付。"
+          }
+
+        ],
+        "layoutRegions": [
+        ]
+      },
+      {
+        "id": "scene_25af80c3d7",
+        "stageId": "73c05db891",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 6,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_39b7f06c84",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_29e5c0f764",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_06.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_0d62bc2668",
+            "type": "speech",
+            "text": "全球科技企业正在加大东盟投资，云计算和AI基础设施由新加坡单一中心逐步转向马来西亚、泰国和印度尼西亚等多个市场共同发展。",
+            "text_v1": "全球科技企业正在加大东盟投资，云计算和AI基础设施由新加坡单一中心逐步转向马来西亚、泰国和印度尼西亚等多个市场共同发展。"
+          }
+        ],
+        "layoutRegions": [
+        ]
+      },
+      {
+        "id": "scene_f4b6192e05",
+        "stageId": "a168f43e2c",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 7,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_e26a814d5b",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_b68d13a4f2",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_07.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_e5196a7c24",
+            "type": "speech",
+            "text": "展望未来，中国—东盟人工智能产业发展将逐步聚焦于本地化适配能力、业务流程嵌入深度与跨国规模化复制水平，整体呈现算力低碳交付、本土语言标准化、多模态智能体普及、企业核心业务落地、区域治理机制成型的发展趋势。",
+            "text_v1": "展望未来，中国—东盟人工智能产业发展将逐步聚焦于本地化适配能力、业务流程嵌入深度与跨国规模化复制水平，整体呈现算力低碳交付、本土语言标准化、多模态智能体普及、企业核心业务落地、区域治理机制成型的发展趋势。"
+          }
+        ],
+        "layoutRegions": [
+        ]
+      },
+      {
+        "id": "scene_68d3e7a14c",
+        "stageId": "2bd5940fc7",
+        "type": "slide",
+        "title": "2026年中国东盟人工智能产业发展研究报告",
+        "order": 8,
+        "content": {
+          "type": "slide",
+          "canvas": {
+            "id": "slide_70c3d9b1f6",
+            "viewportSize": 1000,
+            "viewportRatio": 0.5625,
+            "theme": {
+              "backgroundColor": "#ffffff",
+              "themeColors": [
+                "#5b9bd5",
+                "#ed7d31",
+                "#a5a5a5",
+                "#ffc000",
+                "#4472c4"
+              ],
+              "fontColor": "#333333",
+              "fontName": "Microsoft YaHei"
+            },
+            "elements": [
+              {
+                "id": "image_04fa9c7e35",
+                "type": "image",
+                "left": 0.0,
+                "top": 0.0,
+                "width": 1000.0,
+                "height": 562.5,
+                "rotate": 0,
+                "src": "https://edu-robot-pri-1328072113.cos.ap-guangzhou.myqcloud.com/images/dongmeng_08.png"
+              }
+            ],
+            "background": {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "action_6f2d90b8e1",
+            "type": "speech",
+            "text": "中国与东盟有望共同构建开放协同、高效务实、创新活跃的人工智能产业生态，广西作为面向东盟开放合作的前沿窗口，依托跨境通信枢纽、数据领域国际合作试点等独特禀赋，正逐步成为中国—东盟 AI 算力流通、数据要素跨境服务、产业项目落地的核心枢纽。",
+            "text_v1": "中国与东盟有望共同构建开放协同、高效务实、创新活跃的人工智能产业生态，广西作为面向东盟开放合作的前沿窗口，依托跨境通信枢纽、数据领域国际合作试点等独特禀赋，正逐步成为中国—东盟 AI 算力流通、数据要素跨境服务、产业项目落地的核心枢纽。"
+          },
+          {
+            "id": "action_cfcb62b80d",
+            "type": "speech",
+            "text": "以上就是本次报告的核心内容。完整版《2026 年中国—东盟人工智能产业发展研究报告》请关注广西产业技术研究院公众号相关资讯进行查阅。谢谢各位!",
+            "text_v1": "以上就是本次报告的核心内容。完整版《2026 年中国—东盟人工智能产业发展研究报告》请关注广西产业技术研究院公众号相关资讯进行查阅。谢谢各位!"
+          }
+        ],
+        "layoutRegions": [
+        ]
+      }
+  ],
+  "createdAt": "2026-08-24T08:22:19.365662+00:00"
+}
+}

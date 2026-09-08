@@ -112,7 +112,6 @@ test('goods receipt fixture is isolated from the unit initial approval fixture',
   assert.match(goodsReceiptScript, /吉林省润强药业有限公司/)
   assert.match(goodsReceiptScript, /安神补心丸/)
   assert.match(goodsReceiptScript, /硫酸庆大霉素碳酸铋胶囊/)
-  assert.match(goodsReceiptScript, /"populateBlankRows":true/)
   assert.match(goodsReceiptScript, /batchNumber/)
   assert.doesNotMatch(goodsReceiptScript, /示例医药有限公司/)
   assert.match(unitInitialApprovalScript, /示例医药有限公司/)

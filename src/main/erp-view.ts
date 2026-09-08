@@ -13,6 +13,7 @@ import {
   type ErpPageContext
 } from '../shared/business'
 import { toPageContext, type ErpPageDescriptor } from './businesses/page-registry'
+import { normalizeAutofillResult } from './erp-autofill-result'
 
 const TOOLBAR_HEIGHT = 64
 const DEFAULT_SIDEBAR_WIDTH = 400
@@ -120,12 +121,15 @@ export class ErpViewController {
     if (extraction.documentType !== businessId) {
       return createAutofillFailure('failed', '识别结果与当前业务不一致，已拒绝代填')
     }
-    return this.fillWithScript(businessId, buildExtractedAutofillScript(extraction))
+    const expectedRows = extraction.documentType === 'unit-initial-approval'
+      ? extraction.qualificationRows.length : extraction.items.length
+    return this.fillWithScript(businessId, buildExtractedAutofillScript(extraction), expectedRows)
   }
 
   private async fillWithScript(
     businessId: BusinessId,
-    script: string
+    script: string,
+    expectedDetailRows = 0
   ): Promise<ErpAutofillResult> {
     if (!this.view || this.view.webContents.isDestroyed()) {
       return createAutofillFailure('unavailable', 'ERP 页面尚未加载')
@@ -152,26 +156,7 @@ export class ErpViewController {
         skippedFields?: unknown
       }
 
-      if (
-        typeof result?.filledHeaderFields !== 'number' ||
-        typeof result?.filledDetailRows !== 'number' ||
-        !Array.isArray(result?.skippedFields)
-      ) {
-        return createAutofillFailure('failed', 'ERP 页面没有返回有效的代填结果')
-      }
-
-      const skippedFields = result.skippedFields.filter(
-        (value): value is string => typeof value === 'string'
-      )
-      const skippedMessage = skippedFields.length > 0 ? `，${skippedFields.length} 项未填` : ''
-
-      return {
-        status: 'filled',
-        message: `已填入 ${result.filledHeaderFields} 个基本字段和 ${result.filledDetailRows} 条明细${skippedMessage}；请核对后手动保存`,
-        filledHeaderFields: result.filledHeaderFields,
-        filledDetailRows: result.filledDetailRows,
-        skippedFields
-      }
+      return normalizeAutofillResult(result, expectedDetailRows)
     } catch (error) {
       return createAutofillFailure(
         'failed',

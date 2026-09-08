@@ -19,8 +19,10 @@ import {
 import {
   calculateGoodsReceiptCoverage,
   createGoodsReceiptSubmissionTool,
+  goodsReceiptOcrPrompt,
   goodsReceiptSystemPrompt,
   mergeGoodsReceiptExtractions,
+  needsGoodsReceiptHeaderOcr,
   normalizeGoodsReceiptSubmission,
   type GoodsReceiptSubmission
 } from './goods-receipt-tool'
@@ -37,6 +39,9 @@ export interface BusinessExtractionAdapter {
   id: BusinessId
   submissionToolName: string
   systemPrompt: string
+  ocrPrompt?: string
+  ocrImageScale?: number
+  needsHeaderOcr?: (text: string) => boolean
   createSubmissionTool: (submit: (submission: unknown) => void) => AgentTool
   normalize: (submission: unknown, pageCount: number) => BusinessExtraction
   merge: (
@@ -71,6 +76,9 @@ const adapters: Record<BusinessId, BusinessExtractionAdapter> = {
   'goods-receipt': {
     id: 'goods-receipt',
     submissionToolName: 'submit_goods_receipt',
+    ocrPrompt: goodsReceiptOcrPrompt(),
+    ocrImageScale: 2,
+    needsHeaderOcr: needsGoodsReceiptHeaderOcr,
     systemPrompt: goodsReceiptSystemPrompt(),
     createSubmissionTool: (submit) =>
       createGoodsReceiptSubmissionTool((submission) => submit(submission)) as AgentTool,

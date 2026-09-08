@@ -9,7 +9,7 @@
     "mode": "Add"
   },
   "headerFields": [
-    { "key": "supplierName", "label": "单位名称", "erpElementId": "DWMC", "controlType": "reference", "editability": "erp-reference", "source": "ocr-match" },
+    { "key": "supplierName", "label": "单位名称", "erpElementId": "DWMC", "controlType": "reference", "editability": "editable", "source": "ocr" },
     { "key": "departureDate", "label": "启运日期", "erpElementId": "QYRQ", "controlType": "date", "editability": "editable", "source": "ocr" },
     { "key": "carrierName", "label": "承运单位", "erpElementId": "CYDW", "controlType": "input", "editability": "editable", "source": "ocr" },
     { "key": "transportMethod", "label": "承运方式", "erpElementId": "CYFS", "controlType": "input", "editability": "editable", "source": "ocr" },
@@ -32,15 +32,19 @@
   ],
   "detailGrid": {
     "erpController": "gridEditBody",
-    "selectionMode": "match-existing-order-lines",
+    "selectionMode": "reuse-or-insert-document-rows",
     "fields": [
-      { "key": "productName", "label": "商品名称", "erpCellName": "SPMC", "editability": "erp-reference", "source": "ocr-match" },
+      { "key": "productName", "label": "商品名称", "erpCellName": "SPMC", "editability": "grid-api", "source": "ocr" },
+      { "key": "specification", "label": "规格", "erpCellName": "GG", "editability": "grid-api", "source": "ocr" },
+      { "key": "manufacturer", "label": "生产厂商", "erpCellName": "SCCS", "editability": "grid-api", "source": "ocr" },
+      { "key": "unit", "label": "单位", "erpCellName": "DW", "editability": "grid-api", "source": "ocr" },
+      { "key": "unitPrice", "label": "单价", "erpCellName": "DJ", "editability": "grid-api", "source": "ocr" },
       { "key": "arrivalQuantity", "label": "到货数量", "erpCellName": "DHSL", "editability": "editable", "source": "ocr" },
       { "key": "receiptQuantity", "label": "收货数量", "erpCellName": "SHSL", "editability": "editable", "source": "ocr" },
       { "key": "remark", "label": "备注", "erpCellName": "BZ", "editability": "editable", "source": "ocr-or-user" },
-      { "key": "batchNumber", "label": "商品批号", "erpCellName": "SPPH", "editability": "hidden-readonly", "source": "evidence" },
-      { "key": "productionDate", "label": "生产日期", "erpCellName": "SCRQ", "editability": "hidden-readonly", "source": "evidence" },
-      { "key": "expiryDate", "label": "有效期至", "erpCellName": "YXQZ", "editability": "hidden-readonly", "source": "evidence" }
+      { "key": "batchNumber", "label": "商品批号", "erpCellName": "SPPH", "editability": "grid-api", "source": "ocr" },
+      { "key": "productionDate", "label": "生产日期", "erpCellName": "SCRQ", "editability": "grid-api", "source": "ocr" },
+      { "key": "expiryDate", "label": "有效期至", "erpCellName": "YXQZ", "editability": "grid-api", "source": "ocr" }
     ]
   }
 }

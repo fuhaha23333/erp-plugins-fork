@@ -136,7 +136,7 @@ const reviewFields = computed<ReviewField[]>(() => {
   if (extraction.documentType === 'goods-receipt') {
     const header = extraction.header
     return [
-      { label: '供应商', target: '单位名称 · DWMC', value: displayValue(header.supplierName), status: header.supplierName ? 'match' : 'missing' },
+      { label: '供应商', target: '单位名称 · DWMC', value: displayValue(header.supplierName), status: header.supplierName ? 'ready' : 'missing' },
       { label: '启运日期', target: 'QYRQ', value: displayValue(header.departureDate), status: header.departureDate ? 'ready' : 'missing' },
       { label: '承运单位', target: 'CYDW', value: displayValue(header.carrierName), status: header.carrierName ? 'ready' : 'missing' },
       { label: '承运方式', target: 'CYFS', value: displayValue(header.transportMethod), status: header.transportMethod ? 'ready' : 'missing' },
@@ -457,10 +457,10 @@ onMounted(async () => {
             </section>
 
             <section class="review-section">
-              <div class="section-title-row"><h3>{{ extractedData.documentType === 'unit-initial-approval' ? '证照资料' : '商品明细' }}</h3><small>{{ extractedData.documentType === 'purchase-order' ? '通过 ERP 商品参照匹配' : extractedData.documentType === 'goods-receipt' ? '需匹配 ERP 订单行' : '将写入资料网格' }}</small></div>
+              <div class="section-title-row"><h3>{{ extractedData.documentType === 'unit-initial-approval' ? '证照资料' : '商品明细' }}</h3><small>{{ extractedData.documentType === 'purchase-order' ? '通过 ERP 商品参照匹配' : extractedData.documentType === 'goods-receipt' ? '按票据逐行新增并填写' : '将写入资料网格' }}</small></div>
               <div v-if="extractedData.documentType === 'goods-receipt'" class="detail-list">
                 <article v-for="(item, index) in (extractedData as GoodsReceiptExtraction).items" :key="`${item.productName}-${item.batchNumber}-${index}`">
-                  <div><span>{{ index + 1 }}</span><strong>{{ item.productName }}</strong><em>待匹配</em></div>
+                  <div><span>{{ index + 1 }}</span><strong>{{ item.productName }}</strong><em>{{ activeSession.status === 'completed' ? '已代填' : '待代填' }}</em></div>
                   <p>{{ item.specification || '规格未识别' }} · {{ item.manufacturer || '生产企业未识别' }}</p>
                   <small>批号 {{ item.batchNumber || '—' }}　到货 {{ item.arrivalQuantity ?? '—' }} {{ item.unit || '' }}　有效期 {{ item.expiryDate || '—' }}</small>
                 </article>
@@ -504,7 +504,7 @@ onMounted(async () => {
 
         <footer v-if="activeSession?.status === 'reviewing'" class="action-bar">
           <button type="button" class="secondary-button" @click="selectDocument">重新选择</button>
-          <button type="button" class="primary-button" :disabled="!canConfirmAutofill" @click="confirmAutofill">确认并代填</button>
+          <button type="button" class="primary-button" :disabled="!canConfirmAutofill" @click="confirmAutofill">{{ autofillResult && autofillResult.status !== 'filled' ? '重试代填' : '确认并代填' }}</button>
         </footer>
         <footer v-else-if="activeSession?.status === 'completed'" class="action-bar completed-action">
           <span>已代填，请在 ERP 中核对后手动保存</span><button type="button" class="secondary-button" @click="selectDocument">新任务</button>
