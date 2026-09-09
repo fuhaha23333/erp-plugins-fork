@@ -11,8 +11,7 @@ release/
 Thumbs.db
 .DS_Store
 
-# Local source documents can contain company and personal data.
-*.pdf
+
 
 test-data/bojin-unit-initial-approval.json
 test-data/*.local.json
