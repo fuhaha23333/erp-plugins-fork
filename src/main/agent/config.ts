@@ -11,6 +11,7 @@ export interface PiModelEndpointConfig {
 export interface PiAgentConfig {
   ocr: PiModelEndpointConfig
   normalizer: PiModelEndpointConfig
+  normalizerThinking?: boolean
   maxUploadBytes: number
   maxPages: number
   ocrConcurrency: number
@@ -20,6 +21,13 @@ export interface PiAgentConfig {
 
 function configuredValue(viteValue: string | undefined, processName: string): string | undefined {
   return viteValue?.trim() || process.env[processName]?.trim() || undefined
+}
+
+function optionalBoolean(value: string | undefined, name: string): boolean | undefined {
+  if (value === undefined) return undefined
+  if (value === 'true') return true
+  if (value === 'false') return false
+  throw new Error(`${name} 必须为 true 或 false，或留空使用服务端默认值`)
 }
 
 function positiveInteger(value: string | undefined, fallback: number, name: string): number {
@@ -100,6 +108,13 @@ export function loadPiAgentConfig(): PiAgentConfig {
       ),
       maxTokens: 16384
     },
+    normalizerThinking: optionalBoolean(
+      configuredValue(
+        import.meta.env.MAIN_VITE_PI_NORMALIZER_ENABLE_THINKING,
+        'MAIN_VITE_PI_NORMALIZER_ENABLE_THINKING'
+      ),
+      'MAIN_VITE_PI_NORMALIZER_ENABLE_THINKING'
+    ),
     maxUploadBytes:
       positiveInteger(
         configuredValue(import.meta.env.MAIN_VITE_PI_MAX_UPLOAD_MB, 'MAIN_VITE_PI_MAX_UPLOAD_MB'),

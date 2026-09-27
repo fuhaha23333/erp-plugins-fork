@@ -1,0 +1,72 @@
+{
+  "id": "purchase-order-simple",
+  "businessId": "purchase-order",
+  "complexity": "simple",
+  "provenance": {
+    "kind": "synthetic-ground-truth",
+    "description": "预先设计的虚构字段记录为 ground truth，再确定性渲染为 OCR 文本；仅参考现有票据的列结构；不是人工标注的真实票据，也不是模型输出。"
+  },
+  "ocrText": "合成测试票据（所有名称、地址及编号均为虚构）\n虚构星岚医药供应有限公司\n销售出库清单\n单据编号：SYN-PO-20260920-02\n购货单位：虚构云砾医药采购有限公司\n收货地址：虚构省云砾市示例收货路404号虚拟仓库\n发货日期：2026-09-20\n开票日期：2026-09-19\n销售日期：2026-09-19\n币种：人民币；金额单位：元\n表格中“—”表示该项未提供；每个序号代表一个独立印刷商品行。\n序号\t商品名称\t规格\t剂型\t生产企业\t产地\t批准文号\t上市许可持有人\t单位\t装量\t批号\t数量\t含税单价\t含税金额\t生产日期\t有效期至\t质量状况\n1\t示例舒宁片\t0.25g×12片×2板/盒\t片剂\t虚构星岚制药有限公司\t虚构省星岚市示例工业路101号\t测试准字H90000001\t虚构星岚医药持有有限公司\t盒\t120\tSYN-B260801\t12\t3.125\t37.5\t2026-08-01\t2028-07-31\t合格\n2\t示例舒宁片\t0.25g×12片×2板/盒\t片剂\t虚构星岚制药有限公司\t虚构省星岚市示例工业路101号\t测试准字H90000001\t虚构星岚医药持有有限公司\t盒\t120\tSYN-B260801\t7\t3.125\t21.875\t2026-08-01\t2028-07-31\t合格\n商品明细行数：2\n数量合计：19\n金额合计：59.375\n制单人：虚构示例员甲\n第1页 / 共1页",
+  "pageNumber": 1,
+  "pageCount": 1,
+  "expected": {
+    "header": {
+      "supplierName": "虚构星岚医药供应有限公司",
+      "sourceOrderNumber": "SYN-PO-20260920-02",
+      "invoiceDate": "2026-09-19",
+      "departureDate": "2026-09-20",
+      "customerName": "虚构云砾医药采购有限公司",
+      "receivingAddress": "虚构省云砾市示例收货路404号虚拟仓库",
+      "carrierName": null,
+      "transportMethod": null,
+      "coldChain": null,
+      "transportTimeLimit": null,
+      "paymentMethod": null,
+      "groupName": null
+    },
+    "items": [
+      {
+        "productName": "示例舒宁片",
+        "specification": "0.25g×12片×2板/盒",
+        "dosageForm": "片剂",
+        "manufacturer": "虚构星岚制药有限公司",
+        "origin": "虚构省星岚市示例工业路101号",
+        "approvalNumber": "测试准字H90000001",
+        "marketingAuthorizationHolder": "虚构星岚医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 120,
+        "batchNumber": "SYN-B260801",
+        "quantity": 12,
+        "taxIncludedUnitPrice": 3.125,
+        "taxIncludedAmount": 37.5,
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "qualityStatus": "合格",
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例舒宁片",
+        "specification": "0.25g×12片×2板/盒",
+        "dosageForm": "片剂",
+        "manufacturer": "虚构星岚制药有限公司",
+        "origin": "虚构省星岚市示例工业路101号",
+        "approvalNumber": "测试准字H90000001",
+        "marketingAuthorizationHolder": "虚构星岚医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 120,
+        "batchNumber": "SYN-B260801",
+        "quantity": 7,
+        "taxIncludedUnitPrice": 3.125,
+        "taxIncludedAmount": 21.875,
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "qualityStatus": "合格",
+        "sourcePages": [
+          1
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,715 @@
+[
+  {
+    "at": "2026-09-23T16:18:45.273Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 2,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 7161.81,
+      "modelResponses": 1,
+      "inputTokens": 3594,
+      "outputTokens": 864,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:45.274Z",
+    "label": "[Performance][Page 2]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 144.32,
+      "renderMs": 123.77,
+      "headerCropMs": 0,
+      "ocrMs": 2583.41,
+      "normalizerMs": 7161.79,
+      "normalizeMs": 1.63,
+      "mergeMs": 0.12,
+      "disposeMs": 0,
+      "pageTotalMs": 10017.38,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:46.436Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 1,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 7410.12,
+      "modelResponses": 1,
+      "inputTokens": 3723,
+      "outputTokens": 868,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:46.437Z",
+    "label": "[Performance][Page 1]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0.1,
+      "renderMs": 143.68,
+      "headerCropMs": 0,
+      "ocrMs": 3625.75,
+      "normalizerMs": 7410.12,
+      "normalizeMs": 0.09,
+      "mergeMs": 0.26,
+      "disposeMs": 0,
+      "pageTotalMs": 11180.89,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:47.582Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 6,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 5826.68,
+      "modelResponses": 1,
+      "inputTokens": 3637,
+      "outputTokens": 573,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:47.582Z",
+    "label": "[Performance][Page 6]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 609.32,
+      "renderMs": 109.56,
+      "headerCropMs": 0,
+      "ocrMs": 5779.39,
+      "normalizerMs": 5826.68,
+      "normalizeMs": 0.05,
+      "mergeMs": 0.1,
+      "disposeMs": 0,
+      "pageTotalMs": 12325.93,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:48.096Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 5,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 7823.78,
+      "modelResponses": 1,
+      "inputTokens": 3663,
+      "outputTokens": 942,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:48.097Z",
+    "label": "[Performance][Page 5]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 499.52,
+      "renderMs": 109.71,
+      "headerCropMs": 0,
+      "ocrMs": 4406.87,
+      "normalizerMs": 7823.77,
+      "normalizeMs": 0.07,
+      "mergeMs": 0.1,
+      "disposeMs": 0,
+      "pageTotalMs": 12840.58,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:52.092Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 9,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 3325.35,
+      "modelResponses": 1,
+      "inputTokens": 3961,
+      "outputTokens": 368,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:52.093Z",
+    "label": "[Performance][Page 9]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0.01,
+      "renderMs": 151.03,
+      "headerCropMs": 0,
+      "ocrMs": 3340.65,
+      "normalizerMs": 3325.34,
+      "normalizeMs": 0.12,
+      "mergeMs": 0.25,
+      "disposeMs": 0,
+      "pageTotalMs": 6818.68,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:54.108Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 10,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 4855.15,
+      "modelResponses": 1,
+      "inputTokens": 3719,
+      "outputTokens": 525,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:54.109Z",
+    "label": "[Performance][Page 10]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 116.65,
+      "headerCropMs": 0,
+      "ocrMs": 2699.45,
+      "normalizerMs": 4855.15,
+      "normalizeMs": 0.08,
+      "mergeMs": 0.12,
+      "disposeMs": 0,
+      "pageTotalMs": 7671.89,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:54.298Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 4,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 8882.83,
+      "modelResponses": 1,
+      "inputTokens": 4159,
+      "outputTokens": 1075,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:54.298Z",
+    "label": "[Performance][Page 4]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 379.05,
+      "renderMs": 120.38,
+      "headerCropMs": 0,
+      "ocrMs": 9659.36,
+      "normalizerMs": 8882.83,
+      "normalizeMs": 0.06,
+      "mergeMs": 0.11,
+      "disposeMs": 0,
+      "pageTotalMs": 19042.07,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:55.339Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 13,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 6446.5,
+      "modelResponses": 1,
+      "inputTokens": 3563,
+      "outputTokens": 743,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:55.340Z",
+    "label": "[Performance][Page 13]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 91.28,
+      "headerCropMs": 0,
+      "ocrMs": 1218.93,
+      "normalizerMs": 6446.49,
+      "normalizeMs": 0.27,
+      "mergeMs": 0.24,
+      "disposeMs": 0,
+      "pageTotalMs": 7757.85,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:58.106Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 7,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 3714.07,
+      "modelResponses": 1,
+      "inputTokens": 4064,
+      "outputTokens": 377,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:58.106Z",
+    "label": "[Performance][Page 7]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 718.94,
+      "renderMs": 118.26,
+      "headerCropMs": 0,
+      "ocrMs": 18297.27,
+      "normalizerMs": 3714.07,
+      "normalizeMs": 0.02,
+      "mergeMs": 0.08,
+      "disposeMs": 0,
+      "pageTotalMs": 22849.89,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:58.371Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 3,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 15441.52,
+      "modelResponses": 1,
+      "inputTokens": 4037,
+      "outputTokens": 1493,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:58.372Z",
+    "label": "[Performance][Page 3]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 268.2,
+      "renderMs": 110.76,
+      "headerCropMs": 0,
+      "ocrMs": 7293.79,
+      "normalizerMs": 15441.51,
+      "normalizeMs": 0.08,
+      "mergeMs": 0.21,
+      "disposeMs": 0,
+      "pageTotalMs": 23115.18,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:59.006Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 8,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 14061.4,
+      "modelResponses": 1,
+      "inputTokens": 4296,
+      "outputTokens": 1229,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:59.006Z",
+    "label": "[Performance][Page 8]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 837.31,
+      "renderMs": 165.27,
+      "headerCropMs": 0,
+      "ocrMs": 8684.94,
+      "normalizerMs": 14061.39,
+      "normalizeMs": 0.08,
+      "mergeMs": 0.18,
+      "disposeMs": 0,
+      "pageTotalMs": 23749.73,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:59.217Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 14,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 4969.02,
+      "modelResponses": 1,
+      "inputTokens": 3516,
+      "outputTokens": 520,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:18:59.218Z",
+    "label": "[Performance][Page 14]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 127.69,
+      "headerCropMs": 0,
+      "ocrMs": 6023.07,
+      "normalizerMs": 4969.01,
+      "normalizeMs": 0.11,
+      "mergeMs": 0.22,
+      "disposeMs": 0,
+      "pageTotalMs": 11120.64,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:19:03.062Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 16,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 4944.36,
+      "modelResponses": 1,
+      "inputTokens": 3801,
+      "outputTokens": 494,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:19:03.062Z",
+    "label": "[Performance][Page 16]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 144.66,
+      "headerCropMs": 0,
+      "ocrMs": 3863.78,
+      "normalizerMs": 4944.35,
+      "normalizeMs": 0.09,
+      "mergeMs": 0.16,
+      "disposeMs": 0,
+      "pageTotalMs": 8953.48,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:20:23.963Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 15,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 10616.37,
+      "modelResponses": 1,
+      "inputTokens": 16085,
+      "outputTokens": 862,
+      "reasoningTokens": null,
+      "reasoningMetrics": "reasoning metrics unavailable (SDK zero may mean zero or unreported)",
+      "hasThinking": false,
+      "thinkingChars": 0,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": false,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T16:20:23.964Z",
+    "label": "[Performance][Page 15]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 152.24,
+      "headerCropMs": 0,
+      "ocrMs": 81100.27,
+      "normalizerMs": 10616.36,
+      "normalizeMs": 0.08,
+      "mergeMs": 0.17,
+      "disposeMs": 0,
+      "pageTotalMs": 91870.83,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T16:20:23.965Z",
+    "label": "[Performance][Document]",
+    "data": {
+      "documentId": 1,
+      "pages": 16,
+      "selectedPages": 14,
+      "excludedPages": 2,
+      "status": "completed",
+      "pagesStarted": 14,
+      "unsettledPages": 0,
+      "cumulative": {
+        "prepareMs": 6.68,
+        "renderQueueMs": 3456.77,
+        "renderMs": 1784.93,
+        "headerCropMs": 0,
+        "ocrMs": 158576.93,
+        "normalizerMs": 105478.86,
+        "normalizeMs": 2.84,
+        "mergeMs": 2.32,
+        "disposeMs": 0.71
+      },
+      "localProcessingMs": 1797.49,
+      "elapsedMs": 108716.03,
+      "timingBasis": "cumulative stages overlap across pages; elapsedMs is document wall-clock including cleanup; localProcessingMs is measured local stages, not CPU time"
+    }
+  }
+]

@@ -1,0 +1,212 @@
+{
+  "id": "goods-receipt-medium",
+  "businessId": "goods-receipt",
+  "complexity": "medium",
+  "provenance": {
+    "kind": "synthetic-ground-truth",
+    "description": "预先设计的虚构字段记录为 ground truth，再确定性渲染为 OCR 文本；仅参考现有票据的列结构；不是人工标注的真实票据，也不是模型输出。"
+  },
+  "ocrText": "合成测试票据（所有名称、地址及编号均为虚构）\n虚构星岚医药供应有限公司\n销售出库单（随货同行单）\n单据编号：SYN-GR-20260920-08\n购货单位：虚构云砾医药采购有限公司\n收货地址：虚构省云砾市示例收货路404号虚拟仓库\n发货日期：2026-09-20\n开票日期：2026-09-19\n销售日期：2026-09-19\n物流储运委托第三方（承运单位）：虚构映砂物流有限公司\n承运方式：公路运输\n外表温度：21.5℃\n启运地点：虚构省星岚市示例发货路505号\n币种：人民币；金额单位：元\n表格中“—”表示该项未提供；每个序号代表一个独立印刷商品行。\n序号\t商品名称\t规格\t生产企业\t上市许可持有人\t单位\t包装\t发货数量\t实收数量\t单价\t金额\t批号\t生产日期\t有效期至\t批准文号\t剂型\t件数\t备注\n1\t示例舒宁片\t0.25g×12片×2板/盒\t虚构星岚制药有限公司\t虚构星岚医药持有有限公司\t盒\t120\t12\t—\t3.125\t37.5\tSYN-B260801\t2026-08-01\t2028-07-31\t测试准字H90000001\t片剂\t—\t—\n2\t示例舒宁片\t0.25g×12片×2板/盒\t虚构星岚制药有限公司\t虚构星岚医药持有有限公司\t盒\t120\t7\t—\t3.125\t21.875\tSYN-B260801\t2026-08-01\t2028-07-31\t测试准字H90000001\t片剂\t—\t—\n3\t示例舒宁片\t0.25g×12片×2板/盒\t虚构星岚制药有限公司\t虚构星岚医药持有有限公司\t盒\t120\t9\t—\t3.125\t28.125\tSYN-B260815\t2026-08-15\t2028-08-14\t测试准字H90000001\t片剂\t—\t—\n4\t示例舒宁片\t0.25g×12片×2板/盒\t虚构云砾制药有限公司\t虚构云砾医药持有有限公司\t盒\t120\t16\t—\t3.125\t50.0\tSYN-B260801\t2026-08-01\t2028-07-31\t测试准字H90000002\t片剂\t—\t—\n5\t示例舒宁片\t0.25g×12片×4板/盒\t虚构星岚制药有限公司\t虚构星岚医药持有有限公司\t盒\t60\t20\t—\t3.125\t62.5\tSYN-B260801\t2026-08-01\t2028-07-31\t测试准字H90000001\t片剂\t—\t—\n6\t示例和宁胶囊\t0.3g×10粒×3板/盒\t虚构映砂制药有限公司\t虚构映砂医药持有有限公司\t盒\t60\t11\t—\t4.2\t46.2\tSYN-C260006\t2026-08-01\t2028-07-31\t测试准字Z9000005\t胶囊剂\t—\t—\n7\t示例清宁颗粒\t5g×10袋/盒\t虚构映砂制药有限公司\t—\t盒\t—\t5\t—\t6.35\t31.75\tSYN-C260007\t2026-08-01\t2028-07-31\t测试准字Z9000003\t颗粒剂\t—\t—\n8\t示例润宁口服液\t10ml×6支/盒\t虚构映砂制药有限公司\t虚构映砂医药持有有限公司\t盒\t60\t24\t—\t2.5\t60.0\tSYN-C260008\t2026-08-01\t2028-07-31\t测试准字Z9000004\t口服溶液剂\t—\t—\n商品明细行数：8\n数量合计：104\n金额合计：337.950\n制单人：虚构示例员甲\n第1页 / 共1页",
+  "pageNumber": 1,
+  "pageCount": 1,
+  "expected": {
+    "header": {
+      "supplierName": "虚构星岚医药供应有限公司",
+      "departureDate": "2026-09-20",
+      "carrierName": "虚构映砂物流有限公司",
+      "transportMethod": "公路运输",
+      "receiptDateTime": null,
+      "surfaceTemperature": 21.5,
+      "transportProcessTemperatureStatus": null,
+      "transportVehicle": null,
+      "departurePlace": "虚构省星岚市示例发货路505号",
+      "departureDateTime": null,
+      "receiptDateTimeDetail": null,
+      "actualTransportHours": null,
+      "receiptRemark": "随货同行单号：SYN-GR-20260920-08",
+      "goodsAccountConsistency": null,
+      "deliveryNoteCompliance": null,
+      "enclosedVehicle": null,
+      "logisticsVoucherCompliance": null,
+      "transportTimeLimitStatus": null
+    },
+    "items": [
+      {
+        "productName": "示例舒宁片",
+        "specification": "0.25g×12片×2板/盒",
+        "manufacturer": "虚构星岚制药有限公司",
+        "marketingAuthorizationHolder": "虚构星岚医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 120,
+        "arrivalQuantity": 12,
+        "receiptQuantity": null,
+        "unitPrice": 3.125,
+        "amount": 37.5,
+        "batchNumber": "SYN-B260801",
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "approvalNumber": "测试准字H90000001",
+        "dosageForm": "片剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例舒宁片",
+        "specification": "0.25g×12片×2板/盒",
+        "manufacturer": "虚构星岚制药有限公司",
+        "marketingAuthorizationHolder": "虚构星岚医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 120,
+        "arrivalQuantity": 7,
+        "receiptQuantity": null,
+        "unitPrice": 3.125,
+        "amount": 21.875,
+        "batchNumber": "SYN-B260801",
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "approvalNumber": "测试准字H90000001",
+        "dosageForm": "片剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例舒宁片",
+        "specification": "0.25g×12片×2板/盒",
+        "manufacturer": "虚构星岚制药有限公司",
+        "marketingAuthorizationHolder": "虚构星岚医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 120,
+        "arrivalQuantity": 9,
+        "receiptQuantity": null,
+        "unitPrice": 3.125,
+        "amount": 28.125,
+        "batchNumber": "SYN-B260815",
+        "productionDate": "2026-08-15",
+        "expiryDate": "2028-08-14",
+        "approvalNumber": "测试准字H90000001",
+        "dosageForm": "片剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例舒宁片",
+        "specification": "0.25g×12片×2板/盒",
+        "manufacturer": "虚构云砾制药有限公司",
+        "marketingAuthorizationHolder": "虚构云砾医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 120,
+        "arrivalQuantity": 16,
+        "receiptQuantity": null,
+        "unitPrice": 3.125,
+        "amount": 50.0,
+        "batchNumber": "SYN-B260801",
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "approvalNumber": "测试准字H90000002",
+        "dosageForm": "片剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例舒宁片",
+        "specification": "0.25g×12片×4板/盒",
+        "manufacturer": "虚构星岚制药有限公司",
+        "marketingAuthorizationHolder": "虚构星岚医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 60,
+        "arrivalQuantity": 20,
+        "receiptQuantity": null,
+        "unitPrice": 3.125,
+        "amount": 62.5,
+        "batchNumber": "SYN-B260801",
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "approvalNumber": "测试准字H90000001",
+        "dosageForm": "片剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例和宁胶囊",
+        "specification": "0.3g×10粒×3板/盒",
+        "manufacturer": "虚构映砂制药有限公司",
+        "marketingAuthorizationHolder": "虚构映砂医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 60,
+        "arrivalQuantity": 11,
+        "receiptQuantity": null,
+        "unitPrice": 4.2,
+        "amount": 46.2,
+        "batchNumber": "SYN-C260006",
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "approvalNumber": "测试准字Z9000005",
+        "dosageForm": "胶囊剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例清宁颗粒",
+        "specification": "5g×10袋/盒",
+        "manufacturer": "虚构映砂制药有限公司",
+        "marketingAuthorizationHolder": null,
+        "unit": "盒",
+        "packageQuantity": null,
+        "arrivalQuantity": 5,
+        "receiptQuantity": null,
+        "unitPrice": 6.35,
+        "amount": 31.75,
+        "batchNumber": "SYN-C260007",
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "approvalNumber": "测试准字Z9000003",
+        "dosageForm": "颗粒剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      },
+      {
+        "productName": "示例润宁口服液",
+        "specification": "10ml×6支/盒",
+        "manufacturer": "虚构映砂制药有限公司",
+        "marketingAuthorizationHolder": "虚构映砂医药持有有限公司",
+        "unit": "盒",
+        "packageQuantity": 60,
+        "arrivalQuantity": 24,
+        "receiptQuantity": null,
+        "unitPrice": 2.5,
+        "amount": 60.0,
+        "batchNumber": "SYN-C260008",
+        "productionDate": "2026-08-01",
+        "expiryDate": "2028-07-31",
+        "approvalNumber": "测试准字Z9000004",
+        "dosageForm": "口服溶液剂",
+        "pieceRatio": null,
+        "remark": null,
+        "sourcePages": [
+          1
+        ]
+      }
+    ]
+  }
+}

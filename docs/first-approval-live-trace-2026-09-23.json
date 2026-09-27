@@ -1,0 +1,715 @@
+[
+  {
+    "at": "2026-09-23T15:45:04.149Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 7,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 6488.32,
+      "modelResponses": 1,
+      "inputTokens": 4823,
+      "outputTokens": 627,
+      "reasoningTokens": 232,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 1054,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:04.153Z",
+    "label": "[Performance][Page 7]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 747.89,
+      "renderMs": 121.16,
+      "headerCropMs": 0,
+      "ocrMs": 12211.04,
+      "normalizerMs": 6488.3,
+      "normalizeMs": 0.47,
+      "mergeMs": 0.14,
+      "disposeMs": 0,
+      "pageTotalMs": 19572.06,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:05.786Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 1,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 17570.29,
+      "modelResponses": 1,
+      "inputTokens": 3802,
+      "outputTokens": 1955,
+      "reasoningTokens": 1043,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 3368,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:05.787Z",
+    "label": "[Performance][Page 1]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0.05,
+      "renderMs": 145.97,
+      "headerCropMs": 0,
+      "ocrMs": 3491.74,
+      "normalizerMs": 17570.27,
+      "normalizeMs": 0.86,
+      "mergeMs": 0.36,
+      "disposeMs": 0,
+      "pageTotalMs": 21210.52,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:14.162Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 6,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 22039.09,
+      "modelResponses": 1,
+      "inputTokens": 3722,
+      "outputTokens": 2188,
+      "reasoningTokens": 1690,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 6697,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:14.163Z",
+    "label": "[Performance][Page 6]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 620.23,
+      "renderMs": 127.56,
+      "headerCropMs": 0,
+      "ocrMs": 6798.87,
+      "normalizerMs": 22039.08,
+      "normalizeMs": 0.08,
+      "mergeMs": 0.21,
+      "disposeMs": 0,
+      "pageTotalMs": 29587.62,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:14.439Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 2,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 27300.17,
+      "modelResponses": 1,
+      "inputTokens": 3673,
+      "outputTokens": 3019,
+      "reasoningTokens": 1993,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 6231,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:14.443Z",
+    "label": "[Performance][Page 2]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 150.64,
+      "renderMs": 129.87,
+      "headerCropMs": 0,
+      "ocrMs": 2281.99,
+      "normalizerMs": 27300.15,
+      "normalizeMs": 3.88,
+      "mergeMs": 0.27,
+      "disposeMs": 0,
+      "pageTotalMs": 29868.43,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:27.671Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 8,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 34289.99,
+      "modelResponses": 1,
+      "inputTokens": 4353,
+      "outputTokens": 3308,
+      "reasoningTokens": 2820,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 10590,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:27.672Z",
+    "label": "[Performance][Page 8]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 869.14,
+      "renderMs": 125.5,
+      "headerCropMs": 0,
+      "ocrMs": 7810.84,
+      "normalizerMs": 34289.97,
+      "normalizeMs": 0.18,
+      "mergeMs": 0.32,
+      "disposeMs": 0,
+      "pageTotalMs": 43097.02,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:31.076Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 9,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 16047.25,
+      "modelResponses": 1,
+      "inputTokens": 4040,
+      "outputTokens": 1601,
+      "reasoningTokens": 1143,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 4206,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:31.077Z",
+    "label": "[Performance][Page 9]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 164.32,
+      "headerCropMs": 0,
+      "ocrMs": 10716.01,
+      "normalizerMs": 16047.24,
+      "normalizeMs": 0.06,
+      "mergeMs": 0.12,
+      "disposeMs": 0,
+      "pageTotalMs": 26929.78,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:35.152Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 3,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 44097.06,
+      "modelResponses": 1,
+      "inputTokens": 4112,
+      "outputTokens": 4548,
+      "reasoningTokens": 3765,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 13201,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:35.152Z",
+    "label": "[Performance][Page 3]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 280.64,
+      "renderMs": 110.13,
+      "headerCropMs": 0,
+      "ocrMs": 6088.53,
+      "normalizerMs": 44097.04,
+      "normalizeMs": 0.08,
+      "mergeMs": 0.11,
+      "disposeMs": 0,
+      "pageTotalMs": 50577.57,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:41.303Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 5,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 51624.14,
+      "modelResponses": 1,
+      "inputTokens": 3737,
+      "outputTokens": 5715,
+      "reasoningTokens": 4582,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 14041,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:41.304Z",
+    "label": "[Performance][Page 5]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 507.84,
+      "renderMs": 112.31,
+      "headerCropMs": 0,
+      "ocrMs": 4483.55,
+      "normalizerMs": 51624.12,
+      "normalizeMs": 0.11,
+      "mergeMs": 0.21,
+      "disposeMs": 0,
+      "pageTotalMs": 56728.59,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:46.206Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 14,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 14904.75,
+      "modelResponses": 1,
+      "inputTokens": 3595,
+      "outputTokens": 1499,
+      "reasoningTokens": 1024,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 3968,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:46.206Z",
+    "label": "[Performance][Page 14]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 128.83,
+      "headerCropMs": 0,
+      "ocrMs": 16728.53,
+      "normalizerMs": 14904.75,
+      "normalizeMs": 0.09,
+      "mergeMs": 0.08,
+      "disposeMs": 0,
+      "pageTotalMs": 31762.62,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:52.512Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 13,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 36309.01,
+      "modelResponses": 1,
+      "inputTokens": 3642,
+      "outputTokens": 3600,
+      "reasoningTokens": 2847,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 9984,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:52.513Z",
+    "label": "[Performance][Page 13]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 106.23,
+      "headerCropMs": 0,
+      "ocrMs": 1934.1,
+      "normalizerMs": 36309,
+      "normalizeMs": 0.1,
+      "mergeMs": 0.13,
+      "disposeMs": 0,
+      "pageTotalMs": 38350.15,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:52.515Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 10,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 32878.68,
+      "modelResponses": 1,
+      "inputTokens": 3798,
+      "outputTokens": 2587,
+      "reasoningTokens": 2127,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 8255,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:52.515Z",
+    "label": "[Performance][Page 10]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 145.59,
+      "headerCropMs": 0,
+      "ocrMs": 13705.35,
+      "normalizerMs": 32878.68,
+      "normalizeMs": 0.03,
+      "mergeMs": 0.09,
+      "disposeMs": 0,
+      "pageTotalMs": 46730.32,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:55.136Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 4,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 53275.91,
+      "modelResponses": 1,
+      "inputTokens": 5415,
+      "outputTokens": 4702,
+      "reasoningTokens": 3422,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 10746,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:45:55.137Z",
+    "label": "[Performance][Page 4]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 390.88,
+      "renderMs": 116.85,
+      "headerCropMs": 0,
+      "ocrMs": 16777.19,
+      "normalizerMs": 53275.9,
+      "normalizeMs": 0.13,
+      "mergeMs": 0.12,
+      "disposeMs": 0,
+      "pageTotalMs": 70561.81,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:46:25.318Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 16,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 40956.57,
+      "modelResponses": 1,
+      "inputTokens": 3880,
+      "outputTokens": 4304,
+      "reasoningTokens": 3646,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 12457,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:46:25.319Z",
+    "label": "[Performance][Page 16]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 142.62,
+      "headerCropMs": 0,
+      "ocrMs": 13141.98,
+      "normalizerMs": 40956.56,
+      "normalizeMs": 0.1,
+      "mergeMs": 0.2,
+      "disposeMs": 0,
+      "pageTotalMs": 54242.01,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:47:25.670Z",
+    "label": "[Normalizer]",
+    "data": {
+      "documentId": 1,
+      "page": 15,
+      "model": "deepseek-v4-flash-0731",
+      "normalizerElapsedMs": 19369.59,
+      "modelResponses": 1,
+      "inputTokens": 16164,
+      "outputTokens": 1800,
+      "reasoningTokens": 1345,
+      "reasoningMetrics": "available (subset of outputTokens)",
+      "hasThinking": true,
+      "thinkingChars": 5183,
+      "stopReasons": [
+        "toolUse"
+      ],
+      "toolCalls": 1,
+      "toolResults": 1,
+      "toolErrors": 0,
+      "requests": [
+        {
+          "enableThinking": true,
+          "reasoningEffort": "not-sent",
+          "toolCount": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-23T15:47:25.671Z",
+    "label": "[Performance][Page 15]",
+    "data": {
+      "documentId": 1,
+      "prepareMs": 0,
+      "renderQueueMs": 0,
+      "renderMs": 165.28,
+      "headerCropMs": 0,
+      "ocrMs": 98461.79,
+      "normalizerMs": 19369.58,
+      "normalizeMs": 0.05,
+      "mergeMs": 0.07,
+      "disposeMs": 0,
+      "pageTotalMs": 117998.28,
+      "status": "normalized",
+      "completedAfterDocumentReturn": false
+    }
+  },
+  {
+    "at": "2026-09-23T15:47:25.672Z",
+    "label": "[Performance][Document]",
+    "data": {
+      "documentId": 1,
+      "pages": 16,
+      "selectedPages": 14,
+      "excludedPages": 2,
+      "status": "completed",
+      "pagesStarted": 14,
+      "unsettledPages": 0,
+      "cumulative": {
+        "prepareMs": 5.82,
+        "renderQueueMs": 3567.33,
+        "renderMs": 1842.21,
+        "headerCropMs": 0,
+        "ocrMs": 214631.51,
+        "normalizerMs": 417150.65,
+        "normalizeMs": 6.21,
+        "mergeMs": 2.43,
+        "disposeMs": 0.46
+      },
+      "localProcessingMs": 1857.14,
+      "elapsedMs": 161102.67,
+      "timingBasis": "cumulative stages overlap across pages; elapsedMs is document wall-clock including cleanup; localProcessingMs is measured local stages, not CPU time"
+    }
+  }
+]
