@@ -15,6 +15,8 @@ export interface PiAgentConfig {
   maxUploadBytes: number
   maxPages: number
   ocrConcurrency: number
+  normalizerConcurrency?: number
+  modelConcurrency?: number
   pageTimeoutMs: number
   normalizationTimeoutMs: number
 }
@@ -68,6 +70,17 @@ export function loadPiAgentConfig(): PiAgentConfig {
     process.env.DASHSCOPE_API_KEY?.trim() ||
     process.env.PI_API_KEY?.trim() ||
     bundledApiKey
+
+  const ocrConcurrency = positiveInteger(
+    configuredValue(import.meta.env.MAIN_VITE_PI_OCR_CONCURRENCY, 'MAIN_VITE_PI_OCR_CONCURRENCY'),
+    8,
+    'MAIN_VITE_PI_OCR_CONCURRENCY'
+  )
+  const modelConcurrency = positiveInteger(
+    configuredValue(import.meta.env.MAIN_VITE_PI_MODEL_CONCURRENCY, 'MAIN_VITE_PI_MODEL_CONCURRENCY'),
+    ocrConcurrency,
+    'MAIN_VITE_PI_MODEL_CONCURRENCY'
+  )
 
   return {
     ocr: {
@@ -128,13 +141,15 @@ export function loadPiAgentConfig(): PiAgentConfig {
       50,
       'MAIN_VITE_PI_MAX_PAGES'
     ),
-    ocrConcurrency: positiveInteger(
+    ocrConcurrency,
+    modelConcurrency,
+    normalizerConcurrency: positiveInteger(
       configuredValue(
-        import.meta.env.MAIN_VITE_PI_OCR_CONCURRENCY,
-        'MAIN_VITE_PI_OCR_CONCURRENCY'
+        import.meta.env.MAIN_VITE_PI_NORMALIZER_CONCURRENCY,
+        'MAIN_VITE_PI_NORMALIZER_CONCURRENCY'
       ),
-      8,
-      'MAIN_VITE_PI_OCR_CONCURRENCY'
+      Math.min(4, modelConcurrency),
+      'MAIN_VITE_PI_NORMALIZER_CONCURRENCY'
     ),
     pageTimeoutMs: positiveInteger(
       configuredValue(

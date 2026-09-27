@@ -27,6 +27,7 @@
     "test:normalizer-replay": "node scripts/normalizer-replay.mjs",
     "test:normalizer-replay:offline": "node --test scripts/normalizer-replay.test.mjs",
     "test:normalizer-config": "node --test scripts/normalizer-config.test.mjs",
+    "test:page-pipeline": "esbuild scripts/model-request-scheduler.test.ts --bundle --platform=node --format=esm --outfile=tmp/model-request-scheduler.test.mjs && node --test tmp/model-request-scheduler.test.mjs scripts/page-pipeline.test.mjs",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",
     "build": "npm run typecheck && electron-vite build",
     "start": "electron-vite preview",

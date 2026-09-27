@@ -12,6 +12,8 @@ interface ImportMetaEnv {
   readonly MAIN_VITE_PI_MAX_UPLOAD_MB?: string
   readonly MAIN_VITE_PI_MAX_PAGES?: string
   readonly MAIN_VITE_PI_OCR_CONCURRENCY?: string
+  readonly MAIN_VITE_PI_NORMALIZER_CONCURRENCY?: string
+  readonly MAIN_VITE_PI_MODEL_CONCURRENCY?: string
   readonly MAIN_VITE_PI_PAGE_TIMEOUT_MS?: string
   readonly MAIN_VITE_PI_NORMALIZATION_TIMEOUT_MS?: string
 }

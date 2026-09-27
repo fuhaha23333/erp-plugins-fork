@@ -1,11 +1,12 @@
 import type { AgentMessage } from '@earendil-works/pi-agent-core'
 import type { AssistantMessage } from '@earendil-works/pi-ai'
 
-type Stage = 'prepareMs' | 'renderQueueMs' | 'renderMs' | 'headerCropMs' | 'ocrMs' |
-  'normalizerMs' | 'normalizeMs' | 'mergeMs' | 'disposeMs'
+type Stage = 'prepareMs' | 'ocrQueueMs' | 'renderQueueMs' | 'renderMs' | 'headerCropMs' | 'ocrMs' |
+  'normalizerQueueMs' | 'normalizerMs' | 'normalizeMs' | 'mergeQueueMs' | 'mergeMs' | 'disposeMs'
 const emptyTimes = (): Record<Stage, number> => ({
-  prepareMs: 0, renderQueueMs: 0, renderMs: 0, headerCropMs: 0,
-  ocrMs: 0, normalizerMs: 0, normalizeMs: 0, mergeMs: 0, disposeMs: 0
+  prepareMs: 0, ocrQueueMs: 0, renderQueueMs: 0, renderMs: 0, headerCropMs: 0,
+  ocrMs: 0, normalizerQueueMs: 0, normalizerMs: 0, normalizeMs: 0,
+  mergeQueueMs: 0, mergeMs: 0, disposeMs: 0
 })
 const rounded = (n: number): number => Math.round(n * 100) / 100
 let nextDocumentId = 0
