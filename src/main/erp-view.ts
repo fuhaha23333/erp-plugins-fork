@@ -1,4 +1,5 @@
-import { BrowserWindow, WebContentsView } from 'electron'
+import { BrowserWindow, WebContentsView, dialog } from 'electron'
+import { randomUUID } from 'node:crypto'
 import type { ErpConfig } from './erp-config'
 import {
   buildExtractedAutofillScript,
@@ -14,6 +15,14 @@ import {
 } from '../shared/business'
 import { toPageContext, type ErpPageDescriptor } from './businesses/page-registry'
 import { normalizeAutofillResult } from './erp-autofill-result'
+import { ErpLoginController } from './erp-login'
+import type { AccountProfile } from '../shared/accounts'
+
+export interface ErpWindowOptions {
+  partition?: string
+  account?: AccountProfile
+  credentials?: () => { username: string; password: string }
+}
 
 const TOOLBAR_HEIGHT = 64
 const DEFAULT_SIDEBAR_WIDTH = 400
@@ -22,12 +31,16 @@ export class ErpViewController {
   private readonly view: WebContentsView | null
   private state: ErpState
   private assistantWidth = DEFAULT_SIDEBAR_WIDTH
-  private pageDetectionVersion = 0
+  private pageDetection: Promise<void> | null = null
+  private pagePoll: ReturnType<typeof setInterval> | null = null
+  private disposed = false
+  private login: ErpLoginController | null = null
 
   constructor(
     private readonly window: BrowserWindow,
     private readonly config: ErpConfig,
-    private readonly onStateChanged: (state: ErpState) => void
+    private readonly onStateChanged: (state: ErpState) => void,
+    options: ErpWindowOptions = {}
   ) {
     this.state = {
       configured: config.url !== null,
@@ -36,7 +49,8 @@ export class ErpViewController {
       canGoBack: false,
       canGoForward: false,
       message: config.url ? null : '请在 .env 中配置 MAIN_VITE_ERP_URL',
-      currentPage: null
+      currentPage: null,
+      openPageIds: []
     }
 
     if (!config.url) {
@@ -46,7 +60,7 @@ export class ErpViewController {
 
     this.view = new WebContentsView({
       webPreferences: {
-        partition: 'persist:erp-session',
+        partition: options.partition ?? 'persist:erp-session',
         nodeIntegration: false,
         contextIsolation: true,
         sandbox: true
@@ -56,6 +70,12 @@ export class ErpViewController {
     this.window.contentView.addChildView(this.view)
     this.configureSecurity()
     this.registerEvents()
+    if (options.account && options.credentials) {
+      this.login = new ErpLoginController(this.view.webContents, config.url, options.account, options.credentials,
+        account => this.patchState({ account }))
+    }
+    // ERP tab switches and iframe removal do not necessarily navigate.
+    this.pagePoll = setInterval(() => { void this.refreshPageContext() }, 750)
     this.updateBounds()
 
     this.window.on('resize', this.updateBounds)
@@ -70,6 +90,14 @@ export class ErpViewController {
 
   getState(): ErpState {
     return { ...this.state }
+  }
+
+  retryLogin(): void { this.login?.retry() }
+
+  assertAccountReady(): void {
+    if (this.state.account && this.state.account.status !== 'signed-in') {
+      throw new Error('请先完成当前预设账号的登录')
+    }
   }
 
   goBack(): void {
@@ -116,21 +144,26 @@ export class ErpViewController {
 
   async fillExtractedData(
     businessId: BusinessId,
-    extraction: BusinessExtraction
+    extraction: BusinessExtraction,
+    pageId: string
   ): Promise<ErpAutofillResult> {
     if (extraction.documentType !== businessId) {
       return createAutofillFailure('failed', '识别结果与当前业务不一致，已拒绝代填')
     }
     const expectedRows = extraction.documentType === 'unit-initial-approval'
       ? extraction.qualificationRows.length : extraction.items.length
-    return this.fillWithScript(businessId, buildExtractedAutofillScript(extraction), expectedRows)
+    return this.fillWithScript(businessId, buildExtractedAutofillScript(extraction), expectedRows, pageId)
   }
 
   private async fillWithScript(
     businessId: BusinessId,
     script: string,
-    expectedDetailRows = 0
+    expectedDetailRows = 0,
+    expectedPageId?: string
   ): Promise<ErpAutofillResult> {
+    try { this.assertAccountReady() } catch (error) {
+      return createAutofillFailure('unavailable', (error as Error).message)
+    }
     if (!this.view || this.view.webContents.isDestroyed()) {
       return createAutofillFailure('unavailable', 'ERP 页面尚未加载')
     }
@@ -138,7 +171,7 @@ export class ErpViewController {
     const detected = await this.findBusinessFrame(businessId)
     const editorFrame = detected?.frame
 
-    if (!editorFrame) {
+    if (!editorFrame || (expectedPageId && detected.context.pageId !== expectedPageId)) {
       const definition = BUSINESS_DEFINITIONS[businessId]
       return createAutofillFailure(
         'wrong-page',
@@ -147,8 +180,14 @@ export class ErpViewController {
     }
 
     try {
+      const guardedScript = expectedPageId ? `(() => {
+        if (document[Symbol.for('erp-ocr.document-id')] !== ${JSON.stringify(expectedPageId)}) {
+          throw new Error('原单据页已关闭或刷新，暂存结果不可用于新页面')
+        }
+        return ${script}
+      })()` : script
       const result = (await editorFrame.executeJavaScript(
-        script,
+        guardedScript,
         true
       )) as {
         filledHeaderFields?: unknown
@@ -166,6 +205,9 @@ export class ErpViewController {
   }
 
   dispose(): void {
+    this.disposed = true
+    this.login?.dispose()
+    if (this.pagePoll) clearInterval(this.pagePoll)
     this.window.removeListener('resize', this.updateBounds)
 
     if (this.view && !this.view.webContents.isDestroyed()) {
@@ -227,6 +269,24 @@ export class ErpViewController {
     }
 
     const contents = this.view.webContents
+
+    contents.on('will-prevent-unload', (event) => {
+      if (this.disposed || this.window.isDestroyed()) return
+      // Electron cancels beforeunload navigation without a browser-style prompt.
+      // The decision must be synchronous: preventDefault here allows leaving.
+      const choice = dialog.showMessageBoxSync(this.window, {
+        type: 'question',
+        title: '确认离开 ERP 页面',
+        message: 'ERP 页面正在阻止离开，是否继续？',
+        detail: '可能有尚未保存的单据。选择“离开页面”将继续退出、刷新或跳转，并清除已关闭单据页的识别暂存；选择“留在当前页面”可继续核对和保存。',
+        buttons: ['留在当前页面', '离开页面'],
+        defaultId: 0,
+        cancelId: 0,
+        noLink: true
+      })
+      if (choice === 1) event.preventDefault()
+      else this.login?.cancelLogout()
+    })
 
     contents.on('did-start-navigation', (details) => {
       if (details.isMainFrame) {
@@ -298,22 +358,37 @@ export class ErpViewController {
     }
   }
 
-  private async refreshPageContext(): Promise<void> {
-    const detectionVersion = ++this.pageDetectionVersion
-    const detected = await this.findBusinessFrame()
-    if (detectionVersion !== this.pageDetectionVersion) return
-    const currentPage = detected?.context ?? null
-    if (JSON.stringify(currentPage) !== JSON.stringify(this.state.currentPage)) {
-      this.patchState({ currentPage })
+  async refreshPageContext(): Promise<void> {
+    if (this.disposed) return
+    if (this.pageDetection) return this.pageDetection
+    this.pageDetection = this.updatePageContext().finally(() => { this.pageDetection = null })
+    return this.pageDetection
+  }
+
+  private async updatePageContext(): Promise<void> {
+    const candidates = await this.findBusinessFrames()
+    if (this.disposed) return
+    const currentPage = candidates.find(candidate => candidate.visible)?.context ?? null
+    const openPageIds = candidates.flatMap(candidate => candidate.context.pageId ? [candidate.context.pageId] : [])
+    if (JSON.stringify(currentPage) !== JSON.stringify(this.state.currentPage) ||
+      JSON.stringify(openPageIds) !== JSON.stringify(this.state.openPageIds)) {
+      this.patchState({ currentPage, openPageIds })
     }
   }
 
   private async findBusinessFrame(
     expectedBusinessId?: BusinessId
   ): Promise<{ frame: Electron.WebFrameMain; context: ErpPageContext } | null> {
-    if (!this.view || this.view.webContents.isDestroyed()) return null
+    const candidates = await this.findBusinessFrames()
+    const active = candidates.find(candidate => candidate.visible && candidate.context.isNew &&
+      (!expectedBusinessId || candidate.context.businessId === expectedBusinessId))
+    return active ? { frame: active.frame, context: active.context } : null
+  }
+
+  private async findBusinessFrames(): Promise<Array<{ frame: Electron.WebFrameMain; context: ErpPageContext; visible: boolean }>> {
+    if (!this.view || this.view.webContents.isDestroyed()) return []
     const contents = this.view.webContents
-    const frames = [contents.mainFrame, ...contents.mainFrame.frames]
+    const frames = contents.mainFrame.framesInSubtree
 
     const candidates: Array<{ frame: Electron.WebFrameMain; context: ErpPageContext; visible: boolean }> = []
     for (const frame of frames) {
@@ -322,12 +397,15 @@ export class ErpViewController {
       try {
         descriptor = (await frame.executeJavaScript(
           `(() => {
+            const pageKey = Symbol.for('erp-ocr.document-id')
+            if (!document[pageKey]) Object.defineProperty(document, pageKey, { value: ${JSON.stringify(randomUUID())} })
             const value = (id) => {
               const element = document.getElementById(id)
               return element && 'value' in element ? String(element.value || '').trim() : null
             }
             const knownIds = ['DWMC', 'YYZZH', 'QYRQ', 'CYDW', 'FKFS', 'SPMC']
             return {
+              pageId: document[pageKey],
               ename: value('Ename'),
               cname: value('Cname'),
               mode: value('Mode'),
@@ -350,12 +428,10 @@ export class ErpViewController {
       }
 
       const context = toPageContext(descriptor)
-      if (!context.supported || !context.isNew) continue
-      if (expectedBusinessId && context.businessId !== expectedBusinessId) continue
+      if (!context.supported) continue
       candidates.push({ frame, context, visible: descriptor.visible })
     }
-    const active = candidates.find((candidate) => candidate.visible)
-    return active ? { frame: active.frame, context: active.context } : null
+    return candidates
   }
 
   private patchState(patch: Partial<ErpState>): void {

@@ -1,6 +1,7 @@
 import type { BusinessId, ErpPageContext } from '../../shared/business'
 
 export interface ErpPageDescriptor {
+  pageId?: string
   ename: string | null
   cname: string | null
   mode: string | null
@@ -45,6 +46,7 @@ export function toPageContext(descriptor: ErpPageDescriptor): ErpPageContext {
   const mode = normalized(descriptor.mode)
   const isNew = mode === 'add' || mode === '新建' || typeFromUrl.toLowerCase() === 'add'
   return {
+    pageId: descriptor.pageId ?? null,
     businessId,
     ename: descriptor.ename,
     cname: descriptor.cname,

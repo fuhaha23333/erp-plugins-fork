@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import vm from 'node:vm'
+import { WorkflowSessionManager } from '../src/main/workflow-session-manager'
 import receiptFixture from '../test-data/goods-receipt.ckfh26070523.json'
 import { normalizeAutofillResult } from '../src/main/erp-autofill-result'
 import type { GoodsReceiptExtraction, GoodsReceiptItem } from '../src/shared/business'
@@ -151,6 +152,31 @@ test('recognized data uses the same blank-grid insertion path as the working fix
   assert.equal(recognizedResult.filledDetailRows, 7)
   assert.deepEqual(recognizedPage.rows.map(row => Object.fromEntries(Object.entries(row.cells()).map(([key, cell]) => [key, cell.value]))),
     fixturePage.rows.map(row => Object.fromEntries(Object.entries(row.cells()).map(([key, cell]) => [key, cell.value]))))
+})
+
+test('cached recognition restores deleted rows and fields without duplicating retained rows', async () => {
+  const page = createFixtureContext()
+  const sessions = new WorkflowSessionManager()
+  const extraction = goodsReceiptExtraction(receiptFixture.erpPayload.items.map(item => ({ ...item, sourcePages: [1] })))
+  sessions.bindToPage('receipt', 'goods-receipt', 'erp-page')
+  sessions.complete('receipt', 'goods-receipt', extraction)
+  const refill = () => vm.runInNewContext(buildExtractedAutofillScript(sessions.getExtraction('receipt', 'goods-receipt')), page.context)
+  await refill()
+  const retained = page.rows[0]
+  page.rows.splice(2, 2)
+  retained.cells().DHSL.value = ''
+  page.elements.get('QYRQ')!.value = ''
+  const result = await refill()
+  assert.equal(result.filledDetailRows, 7)
+  assert.equal(page.rows.length, 7)
+  assert.equal(page.rows[0], retained)
+  assert.equal(retained.cells().DHSL.value, '2000')
+  assert.equal(page.elements.get('QYRQ')!.value, '2026-07-21')
+  await refill()
+  assert.equal(page.rows.length, 7)
+  page.rows.splice(0)
+  assert.equal((await refill()).filledDetailRows, 7)
+  assert.equal(page.rows.length, 7)
 })
 
 test('OCR fills all recognized product columns even when ERP references have no candidates', async () => {

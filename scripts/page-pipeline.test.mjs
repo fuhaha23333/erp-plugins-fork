@@ -207,3 +207,40 @@ test('fatal failure during rendering prevents not-yet-created agents from sendin
   assert.equal(documentAborted, true)
   assert.equal(requestsAfterAbort, 0)
 })
+
+test('concurrent documents share one model budget and cancelling one leaves the other running', async (t) => {
+  const file = await pdfFixture(t, 2)
+  t.mock.method(console, 'info', () => {})
+  const started = defer()
+  let requests = 0, active = 0, peak = 0, aborted = false
+  t.mock.method(globalThis, 'fetch', async (_url, init) => {
+    const { body, page } = requestInfo(init)
+    const ordinal = ++requests
+    active++; peak = Math.max(peak, active)
+    try {
+      if (ordinal === 1) {
+        started.resolve()
+        await new Promise((_resolve, reject) => init.signal.addEventListener('abort', () => {
+          aborted = true; reject(new Error('window closed'))
+        }, { once: true }))
+      }
+      await delay(10)
+      return response(body, page)
+    } finally { active-- }
+  })
+  const client = new app.PiDocumentClient(config({ modelConcurrency: 1, ocrConcurrency: 1 }))
+  const controller = new AbortController()
+  const first = client.extractDocument(file, () => {}, { businessId: 'goods-receipt', signal: controller.signal })
+  await started.promise
+  const second = client.extractDocument(file, () => {}, { businessId: 'goods-receipt' })
+  await delay(50)
+  assert.equal(requests, 1, 'other documents must queue behind the shared limit')
+  controller.abort(new Error('window closed'))
+  const [cancelled, completed] = await Promise.all([first, second])
+  assert.equal(cancelled.status, 'cancelled')
+  assert.equal(completed.status, 'completed', completed.message)
+  assert.equal(aborted, true)
+  assert.equal(peak, 1)
+  assert.equal(active, 0)
+  assert.equal(completed.result.extractedData.items.length, 4)
+})

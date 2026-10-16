@@ -37,6 +37,7 @@ export const BUSINESS_DEFINITIONS: Record<BusinessId, BusinessDefinition> = {
 }
 
 export interface ErpPageContext {
+  pageId: string | null
   businessId: BusinessId | null
   ename: string | null
   cname: string | null

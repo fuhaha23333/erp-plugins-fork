@@ -4,11 +4,12 @@ interface QueuedRequest {
   start: () => void
 }
 
-/** Per-document stage limits plus one shared budget. No document content is stored here. */
+/** App-wide stage limits plus one shared budget. No document content is stored here. */
 export class ModelRequestScheduler {
   private readonly queues: Record<ModelStage, QueuedRequest[]> = { ocr: [], normalizer: [] }
   private readonly active: Record<ModelStage, number> = { ocr: 0, normalizer: 0 }
   private lastStage: ModelStage = 'normalizer'
+  private readonly cancellations = new Map<AbortSignal, { jobs: Set<() => void>; listener: () => void }>()
 
   constructor(private readonly limits: { ocr: number; normalizer: number; total: number }) {
     if (Object.values(limits).some((n) => !Number.isSafeInteger(n) || n <= 0)) {
@@ -23,7 +24,7 @@ export class ModelRequestScheduler {
       const cancel = (): void => {
         const index = queue.indexOf(job)
         if (index >= 0) queue.splice(index, 1)
-        signal.removeEventListener('abort', cancel)
+        this.removeCancellation(signal, cancel)
         reject(signal.reason)
       }
       const release = (): void => {
@@ -32,7 +33,7 @@ export class ModelRequestScheduler {
       }
       const job: QueuedRequest = {
         start: () => {
-          signal.removeEventListener('abort', cancel)
+          this.removeCancellation(signal, cancel)
           this.active[stage]++
           // A job can be aborted after dispatch but before its microtask starts.
           Promise.resolve().then(() => {
@@ -45,9 +46,31 @@ export class ModelRequestScheduler {
         }
       }
       queue.push(job)
-      signal.addEventListener('abort', cancel, { once: true })
+      this.addCancellation(signal, cancel)
       this.drain()
     })
+  }
+
+  private addCancellation(signal: AbortSignal, cancel: () => void): void {
+    let group = this.cancellations.get(signal)
+    if (!group) {
+      const jobs = new Set<() => void>()
+      const listener = (): void => { for (const job of [...jobs]) job() }
+      group = { jobs, listener }
+      this.cancellations.set(signal, group)
+      signal.addEventListener('abort', listener, { once: true })
+    }
+    group.jobs.add(cancel)
+  }
+
+  private removeCancellation(signal: AbortSignal, cancel: () => void): void {
+    const group = this.cancellations.get(signal)
+    if (!group) return
+    group.jobs.delete(cancel)
+    if (group.jobs.size === 0) {
+      signal.removeEventListener('abort', group.listener)
+      this.cancellations.delete(signal)
+    }
   }
 
   private drain(): void {

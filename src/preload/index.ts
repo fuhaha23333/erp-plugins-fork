@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
+import { ACCOUNT_IPC, type AccountApi } from '../shared/accounts'
 import {
   ERP_IPC,
   type ErpAutofillResult,
@@ -20,6 +21,21 @@ contextBridge.exposeInMainWorld(
   'desktop',
   Object.freeze({
     platform: process.platform,
+    accounts: Object.freeze({
+      list: () => ipcRenderer.invoke(ACCOUNT_IPC.list),
+      save: input => ipcRenderer.invoke(ACCOUNT_IPC.save, input),
+      remove: id => ipcRenderer.invoke(ACCOUNT_IPC.remove, id),
+      open: id => ipcRenderer.invoke(ACCOUNT_IPC.open, id),
+      openAll: () => ipcRenderer.invoke(ACCOUNT_IPC.openAll),
+      manager: () => ipcRenderer.invoke(ACCOUNT_IPC.manager),
+      tile: () => ipcRenderer.invoke(ACCOUNT_IPC.tile),
+      retryLogin: () => ipcRenderer.invoke(ACCOUNT_IPC.retryLogin),
+      onChanged: listener => {
+        const handler = (): void => listener()
+        ipcRenderer.on(ACCOUNT_IPC.changed, handler)
+        return () => ipcRenderer.removeListener(ACCOUNT_IPC.changed, handler)
+      }
+    } satisfies AccountApi),
     erp: Object.freeze({
       getState: (): Promise<ErpState> => ipcRenderer.invoke(ERP_IPC.getState),
       goBack: (): Promise<void> => ipcRenderer.invoke(ERP_IPC.goBack),

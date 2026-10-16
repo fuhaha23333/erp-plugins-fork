@@ -43,11 +43,13 @@ export interface OcrCancelRequest {
 export interface OcrDocumentSelectionRequest {
   sessionId: string
   businessId: BusinessId
+  pageId: string
 }
 
 export interface DocumentExtractionOptions {
   businessId: BusinessId
   excludedPages?: number[]
+  signal?: AbortSignal
 }
 
 export type OcrStage =

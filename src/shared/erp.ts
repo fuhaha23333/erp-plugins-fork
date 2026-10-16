@@ -1,4 +1,5 @@
 import type { BusinessId, ErpPageContext } from './business'
+import type { AccountLoginState } from './accounts'
 
 export const ERP_IPC = {
   getState: 'erp:get-state',
@@ -14,6 +15,7 @@ export const ERP_IPC = {
 export type ErpLoadStatus = 'not-configured' | 'loading' | 'ready' | 'error'
 
 export interface ErpState {
+  account?: AccountLoginState
   configured: boolean
   status: ErpLoadStatus
   url: string | null
@@ -21,6 +23,7 @@ export interface ErpState {
   canGoForward: boolean
   message: string | null
   currentPage: ErpPageContext | null
+  openPageIds: string[]
 }
 
 export type ErpAutofillStatus = 'filled' | 'partial' | 'wrong-page' | 'unavailable' | 'failed'

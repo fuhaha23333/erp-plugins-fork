@@ -144,9 +144,13 @@ function safeErrorMessage(error: unknown, config: PiAgentConfig): string {
 
 export class PiDocumentClient implements DocumentExtractionClient {
   private readonly registry: PiModelRegistry
+  private readonly scheduler: ModelRequestScheduler
 
   constructor(private readonly config: PiAgentConfig) {
     this.registry = createPiModelRegistry(config)
+    const total = config.modelConcurrency ?? config.ocrConcurrency
+    this.scheduler = new ModelRequestScheduler({ ocr: config.ocrConcurrency,
+      normalizer: config.normalizerConcurrency ?? Math.min(4, total), total })
   }
 
   async extractDocument(
@@ -162,6 +166,12 @@ export class PiDocumentClient implements DocumentExtractionClient {
     let prepared: PreparedDocument | null = null
     const activeAgents = new Set<Agent>()
     const controller = new AbortController()
+    const cancel = (): void => {
+      controller.abort(options.signal?.reason ?? new Error('识别已取消'))
+      abortRemaining(activeAgents)
+    }
+    options.signal?.addEventListener('abort', cancel, { once: true })
+    if (options.signal?.aborted) cancel()
     const unfinishedPages = new Set<number>()
     const finishPage = (page: number, status: string): void => {
       if (unfinishedPages.delete(page)) timings.finishPage(page, status)
@@ -169,6 +179,7 @@ export class PiDocumentClient implements DocumentExtractionClient {
     const adapter = getExtractionAdapter(options.businessId)
 
     try {
+      controller.signal.throwIfAborted()
       onProgress({ stage: 'reading', current: 0, total: 1, message: '正在读取并检查文件' })
       prepared = await timings.timeAsync(null, 'prepareMs', () => prepareDocument(
         filePath,
@@ -187,11 +198,7 @@ export class PiDocumentClient implements DocumentExtractionClient {
       )
       selectedPageCount = selectedPages.length
       const totalLimit = this.config.modelConcurrency ?? this.config.ocrConcurrency
-      const scheduler = new ModelRequestScheduler({
-        ocr: this.config.ocrConcurrency,
-        normalizer: this.config.normalizerConcurrency ?? Math.min(4, totalLimit),
-        total: totalLimit
-      })
+      const scheduler = this.scheduler
       const schedule = async <T>(stage: ModelStage, page: number, operation: () => Promise<T>): Promise<T> => {
         const queuedAt = timings.enabled ? performance.now() : 0
         let started = false
@@ -557,8 +564,10 @@ export class PiDocumentClient implements DocumentExtractionClient {
       }
     } catch (error) {
       abortRemaining(activeAgents)
+      if (options.signal?.aborted) return { status: 'cancelled', message: '所属窗口已关闭，识别已取消', result: null }
       return { status: 'failed', message: safeErrorMessage(error, this.config), result: null }
     } finally {
+      options.signal?.removeEventListener('abort', cancel)
       controller.abort()
       abortRemaining(activeAgents)
       for (const pageNumber of unfinishedPages) finishPage(pageNumber, 'failed')

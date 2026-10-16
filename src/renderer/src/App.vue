@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import AccountManager from './AccountManager.vue'
 import {
   BUSINESS_DEFINITIONS,
   type BusinessId,
@@ -12,6 +13,7 @@ import type { ErpAutofillResult, ErpState } from '../../shared/erp'
 import type { OcrClientResult, OcrDocumentPreview, OcrProgress } from '../../shared/ocr'
 
 interface ClientWorkflowSession extends WorkflowSession {
+  pageId: string
   preview: OcrDocumentPreview | null
   selectedPageNumbers: number[]
   progress: OcrProgress | null
@@ -26,6 +28,13 @@ interface ReviewField {
 }
 
 const platform = window.desktop.platform
+const isAccountManager = window.location.hash === '#accounts'
+const accountActionError = ref('')
+async function accountAction(action: 'manager' | 'retryLogin'): Promise<void> {
+  accountActionError.value = ''
+  try { await window.desktop.accounts[action]() }
+  catch { accountActionError.value = '操作未完成，请稍后重试' }
+}
 const erpState = ref<ErpState>({
   configured: false,
   status: 'not-configured',
@@ -33,7 +42,8 @@ const erpState = ref<ErpState>({
   canGoBack: false,
   canGoForward: false,
   message: null,
-  currentPage: null
+  currentPage: null,
+  openPageIds: []
 })
 const assistantCollapsed = ref(false)
 const sessions = ref<Record<string, ClientWorkflowSession>>({})
@@ -57,13 +67,13 @@ const currentBusiness = computed(() => {
   return businessId ? BUSINESS_DEFINITIONS[businessId] : null
 })
 const currentPageReady = computed(
-  () => Boolean(erpState.value.currentPage?.supported && erpState.value.currentPage?.isNew)
+  () => Boolean((!erpState.value.account || erpState.value.account.status === 'signed-in') && erpState.value.currentPage?.pageId && erpState.value.currentPage?.supported && erpState.value.currentPage?.isNew)
 )
 const activeSession = computed(() => {
   const sessionId = activeSessionId.value
   if (!sessionId) return null
   const session = sessions.value[sessionId] ?? null
-  return session?.businessId === currentBusinessId.value ? session : null
+  return session?.businessId === currentBusinessId.value && session.pageId === erpState.value.currentPage?.pageId ? session : null
 })
 const currentPreview = computed(() => activeSession.value?.preview ?? null)
 const selectedPageNumbers = computed(() => activeSession.value?.selectedPageNumbers ?? [])
@@ -99,7 +109,8 @@ const workflowStep = computed(() => {
 })
 const canConfirmAutofill = computed(
   () => Boolean(
-    activeSession.value?.status === 'reviewing' &&
+    (activeSession.value?.status === 'reviewing' || activeSession.value?.status === 'completed') &&
+      autofillStatus.value !== 'running' &&
       extractedData.value?.readyForAutofill &&
       currentPageReady.value &&
       extractedData.value.documentType === currentBusinessId.value
@@ -167,6 +178,7 @@ function createSession(businessId: BusinessId): ClientWorkflowSession {
   const session: ClientWorkflowSession = {
     sessionId: crypto.randomUUID(),
     businessId,
+    pageId: erpState.value.currentPage!.pageId!,
     status: 'ready',
     createdAt: Date.now(),
     preview: null,
@@ -219,7 +231,7 @@ async function selectDocument(): Promise<void> {
     }
   })
   try {
-    const result = await window.desktop.ocr.selectDocument({ sessionId: session.sessionId, businessId })
+    const result = await window.desktop.ocr.selectDocument({ sessionId: session.sessionId, businessId, pageId: session.pageId })
     if (result.status === 'cancelled') {
       patchSession(session.sessionId, { status: 'ready', progress: null })
       return
@@ -316,27 +328,35 @@ async function confirmAutofill(): Promise<void> {
   autofillResult.value = null
   try {
     const result = await window.desktop.erp.fillSession({ sessionId: session.sessionId, businessId: session.businessId })
+    patchSession(session.sessionId, { status: result.status === 'filled' ? 'completed' : 'reviewing' })
+    if (activeSessionId.value !== session.sessionId) return
     autofillResult.value = result
     autofillStatus.value = result.status === 'filled' ? 'success' : 'error'
-    patchSession(session.sessionId, { status: result.status === 'filled' ? 'completed' : 'reviewing' })
   } catch (error) {
+    patchSession(session.sessionId, { status: 'reviewing' })
+    if (activeSessionId.value !== session.sessionId) return
     autofillResult.value = {
       status: 'failed', message: error instanceof Error ? error.message : '代填失败',
       filledHeaderFields: 0, filledDetailRows: 0, skippedFields: []
     }
     autofillStatus.value = 'error'
-    patchSession(session.sessionId, { status: 'reviewing' })
   }
 }
 
 onMounted(async () => {
+  if (isAccountManager) return
   erpState.value = await window.desktop.erp.getState()
   await window.desktop.erp.setAssistantWidth(400)
   window.desktop.erp.onStateChanged((state) => {
-    const previousSession = activeSessionId.value ? sessions.value[activeSessionId.value] : null
+    const previousSessionId = activeSessionId.value
     erpState.value = state
-    if (previousSession && state.currentPage?.businessId !== previousSession.businessId) {
-      activeSessionId.value = null
+    const openPages = new Set(state.openPageIds)
+    sessions.value = Object.fromEntries(Object.entries(sessions.value).filter(([, session]) => openPages.has(session.pageId)))
+    const current = previousSessionId ? sessions.value[previousSessionId] : null
+    activeSessionId.value = current && current.pageId === state.currentPage?.pageId ? current.sessionId :
+      Object.values(sessions.value).filter(session => session.pageId === state.currentPage?.pageId)
+        .sort((a, b) => b.createdAt - a.createdAt)[0]?.sessionId ?? null
+    if (previousSessionId !== activeSessionId.value) {
       focusedPreviewPage.value = null
       autofillResult.value = null
       autofillStatus.value = 'idle'
@@ -350,11 +370,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="app-shell" :data-assistant-collapsed="assistantCollapsed">
+  <AccountManager v-if="isAccountManager" />
+  <main v-else class="app-shell" :data-assistant-collapsed="assistantCollapsed">
     <header class="toolbar">
       <div class="brand">
         <span class="brand-mark">E</span>
-        <div><strong>ERP 票据助手</strong><small>{{ platform }} · BUSINESS WORKBENCH</small></div>
+        <div><strong>{{ erpState.account?.label ?? 'ERP 票据助手' }}</strong><small>{{ erpState.account?.username ?? `${platform} · 手动登录` }}</small></div>
       </div>
       <nav class="navigation" aria-label="ERP 页面导航">
         <button type="button" aria-label="后退" :disabled="!erpState.canGoBack" @click="goBack">←</button>
@@ -363,7 +384,9 @@ onMounted(async () => {
       </nav>
       <div class="address" :title="erpState.url ?? ''">{{ erpState.url ?? '尚未配置 ERP 地址' }}</div>
       <span v-if="currentBusiness" class="business-badge">{{ currentBusiness.name }}</span>
-      <span class="connection" :data-status="erpState.status">{{ statusLabel }}</span>
+      <span class="connection" :data-status="erpState.status" :title="erpState.account?.message">{{ erpState.account?.message ?? statusLabel }}</span>
+      <button v-if="erpState.account && ['paused', 'failed', 'mismatch'].includes(erpState.account.status)" class="account-toolbar-button" @click="accountAction('retryLogin')">重新登录</button>
+      <button class="account-toolbar-button" @click="accountAction('manager')">账号管理</button>
     </header>
 
     <section class="erp-stage">
@@ -378,6 +401,7 @@ onMounted(async () => {
         {{ assistantCollapsed ? '‹' : '›' }}
       </button>
       <div v-if="!assistantCollapsed" class="assistant-content">
+        <p v-if="accountActionError" class="account-error" role="alert">{{ accountActionError }}</p>
         <header class="context-card" :data-supported="currentPageReady">
           <div>
             <p class="eyebrow">CURRENT ERP PAGE</p>
@@ -407,7 +431,7 @@ onMounted(async () => {
         <template v-else>
           <section v-if="!activeSession || activeSession.status === 'ready'" class="intake-card">
             <p class="eyebrow">DOCUMENT INTAKE</p><h3>选择{{ currentBusiness?.documentName }}</h3>
-            <p>文件与结果只保存在“{{ currentBusiness?.name }}”会话中，切换业务后不会继续使用。</p>
+            <p>识别结果暂存在当前单据页，关闭该单据页后自动清除。</p>
             <button type="button" class="primary-button" :disabled="recognitionRunning" @click="selectDocument">选择票据并筛选页面</button>
             <button type="button" class="secondary-button" :disabled="autofillStatus === 'running'" @click="fillFixture">使用{{ currentBusiness?.fixtureName }}</button>
           </section>
@@ -435,6 +459,7 @@ onMounted(async () => {
 
           <template v-if="extractedData && activeSession && ['reviewing', 'filling', 'completed'].includes(activeSession.status)">
             <section class="review-summary">
+              <p class="session-cache-note">识别结果已暂存，可重复代填；关闭此 ERP 单据页后自动清除。</p>
               <div class="section-heading">
                 <div><p class="eyebrow">REVIEW BEFORE AUTOFILL</p><h3>核对识别结果</h3></div>
                 <span :data-ready="extractedData.readyForAutofill">{{ extractedData.readyForAutofill ? '可以代填' : '信息不完整' }}</span>
@@ -507,7 +532,9 @@ onMounted(async () => {
           <button type="button" class="primary-button" :disabled="!canConfirmAutofill" @click="confirmAutofill">{{ autofillResult && autofillResult.status !== 'filled' ? '重试代填' : '确认并代填' }}</button>
         </footer>
         <footer v-else-if="activeSession?.status === 'completed'" class="action-bar completed-action">
-          <span>已代填，请在 ERP 中核对后手动保存</span><button type="button" class="secondary-button" @click="selectDocument">新任务</button>
+          <span>已代填，请在 ERP 中核对后手动保存。误删内容可直接重新代填，无需再次识别。</span>
+          <button type="button" class="secondary-button" @click="selectDocument">新任务</button>
+          <button type="button" class="primary-button" :disabled="!canConfirmAutofill" @click="confirmAutofill">重新代填</button>
         </footer>
       </div>
     </aside>
