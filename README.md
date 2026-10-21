@@ -18,11 +18,14 @@
 - 上传前在本地生成可放大的逐页预览，由用户排除身份证、护照、银行卡等高敏页面；被排除页不会调用任何模型。
 - 使用 `@earendil-works/pi-ai` 注册 OpenAI 兼容的 Qwen OCR 与字段标准化模型。
 - 每个并发页面请求使用隔离的 `@earendil-works/pi-agent-core` Agent 会话。
+- 所有业务的 OCR、补识别和字段标准化均显式关闭深度思考；旧思考开关不再生效。
 - 单页 OCR 完成后调用当前业务专属的字段标准化工具，确定性校验通过后合并到当前会话。
 - 默认使用 8 路页面并发，所有用户保留页都会处理完成；并发结果按页码和字段证据合并。
 - 每个 Agent 只暴露当前业务的提交工具：`submit_unit_initial_approval`、`submit_goods_receipt` 或 `submit_purchase_order`。
 - 按 [`config/erp/unit-initial-approval.fields.json`](config/erp/unit-initial-approval.fields.json) 整理 32 个主表字段和 7 个资质明细字段。
 - 采购订单会区分销售方与收货客户，并按票据原始行逐条保留商品；相同商品、批号和单价也不会合并。
+- 采购订单的小字图片放大至最多三倍（最长边 2600 像素），使用 PNG 避免二次有损压缩。低分辨率或商品字段不完整的横向单据会核对左右重叠区域，补全商品名称、厂家及换行日期，合并到原商品行；缺失抬头时单独补识别表头。
+- 采购订单首次字段整理后，按整份文件所有已选页的商品明细汇总判断：商品名称、规格、厂家、批准文号、单位、数量、含税单价、批号、生产日期和有效期这 10 类字段的总缺失率达到 50%（含），或完全没有商品明细，触发一轮商品区域放大补识别。单行缺失率不单独触发，表头字段不计入。优先定位表格，定位不可靠时使用保留上下文的重叠区域；每页最多两次局部 OCR、一次字段整理，补救限时 30 秒。只补缺失值，行数或对应关系冲突时保留首次结果并提示核对；不会循环重试，也不会替代 ERP 商品参照匹配。
 - 对日期、页码、重复证照、敏感字段和关键缺失字段执行程序规则校验。
 - 展示识别进度、字段到 ERP 的映射、商品/证照明细、逐页原文和人工复核提示。
 - 每次文件选择生成独立的 `sessionId`，文件令牌、识别结果和代填请求均绑定 `sessionId + businessId`。
@@ -256,6 +259,13 @@ npm run test:multi-account
 
 # 采购订单原始行保留、跨页拼接与金额校验测试
 npm run test:purchase-order
+
+# 使用本地已授权的真实票据验证采购订单（显式联网，发送票据到配置的百炼接口）
+# 需自行准备 test-data/purchase-order.receipts.json 及其 sourceImage；真实验收数据不随公开仓库分发。
+npm run test:purchase-order:document
+
+# 模拟首次整理缺失 7 个商品字段，实际调用百炼验证放大补救（独立保存结果）
+npm run test:purchase-order:document -- --simulate-missing-products
 
 # 使用指定的 CKFH26070523 原图验证商品收货完整识别链路（会调用配置的外部模型）
 npm run test:goods-receipt:document

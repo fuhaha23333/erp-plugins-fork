@@ -1,10 +1,10 @@
 import type { AgentMessage } from '@earendil-works/pi-agent-core'
 import type { AssistantMessage } from '@earendil-works/pi-ai'
 
-type Stage = 'prepareMs' | 'ocrQueueMs' | 'renderQueueMs' | 'renderMs' | 'headerCropMs' | 'ocrMs' |
+type Stage = 'prepareMs' | 'ocrQueueMs' | 'renderQueueMs' | 'renderMs' | 'headerCropMs' | 'detailCropMs' | 'ocrMs' |
   'normalizerQueueMs' | 'normalizerMs' | 'normalizeMs' | 'mergeQueueMs' | 'mergeMs' | 'disposeMs'
 const emptyTimes = (): Record<Stage, number> => ({
-  prepareMs: 0, ocrQueueMs: 0, renderQueueMs: 0, renderMs: 0, headerCropMs: 0,
+  prepareMs: 0, ocrQueueMs: 0, renderQueueMs: 0, renderMs: 0, headerCropMs: 0, detailCropMs: 0,
   ocrMs: 0, normalizerQueueMs: 0, normalizerMs: 0, normalizeMs: 0,
   mergeQueueMs: 0, mergeMs: 0, disposeMs: 0
 })
@@ -77,7 +77,7 @@ export class PipelinePerformance {
     if (!this.enabled) return
     this.documentEnded = true
     const localProcessingMs = this.cumulative.prepareMs + this.cumulative.renderMs +
-      this.cumulative.headerCropMs + this.cumulative.normalizeMs + this.cumulative.mergeMs + this.cumulative.disposeMs
+      this.cumulative.headerCropMs + this.cumulative.detailCropMs + this.cumulative.normalizeMs + this.cumulative.mergeMs + this.cumulative.disposeMs
     this.log('[Performance][Document]', {
       documentId: this.documentId,
       pages: pageCount, selectedPages, excludedPages: pageCount - selectedPages, status,
