@@ -16,6 +16,10 @@ Thumbs.db
 test-data/bojin-unit-initial-approval.json
 test-data/*.local.json
 
+# Private receipt inputs and live acceptance data stay local.
+data/微信图片_20261021152823_4476_2.png
+test-data/purchase-order.receipts.json
+
 # Temporary inspection and verification artifacts.
 tmp/
 

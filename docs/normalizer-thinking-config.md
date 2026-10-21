@@ -1,4 +1,15 @@
-# 生产 Normalizer 思考开关
+# 模型思考策略（2026-10-21）
+
+应用的所有 OCR、局部补识别、重试及字段标准化请求统一关闭深度思考，适用于三个业务和开发、生产两种构建。
+
+- Agent 使用 `thinkingLevel: 'off'`。
+- HTTP 请求显式设置顶层 `enable_thinking: false`，不依赖服务端默认值或 `reasoning: false` 元数据。
+- 已移除 `MAIN_VITE_PI_NORMALIZER_ENABLE_THINKING` 配置读取；旧环境或构建配置即使残留 `true` 也不能启用思考。
+- 性能日志开关不影响此行为。更新后需重启应用，发行版需重新构建打包。
+
+`npm run test:normalizer-config` 在实际 Agent/SDK 请求边界验证开发/生产环境的 OCR、空文本重试和字段标准化请求均关闭思考；联网验收脚本也逐次检查此字段。
+
+## 历史记录：以下开关配置已失效，仅保留旧实验结果
 
 在项目根目录 `.env` 中配置：
 

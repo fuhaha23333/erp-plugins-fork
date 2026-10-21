@@ -14,9 +14,10 @@ const IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tif
 
 export interface PreparedPageImage {
   data: string
-  mimeType: 'image/jpeg'
+  mimeType: 'image/jpeg' | 'image/png'
   width: number
   height: number
+  sourceWidth?: number
 }
 
 export interface PreparedDocument {
@@ -30,6 +31,23 @@ export interface RenderPageOptions {
   jpegQuality?: number
   /** Upscale raster documents for small receipt text; PDFs already render at 2x. */
   imageScale?: number
+  imageFormat?: 'jpeg' | 'png'
+}
+
+/** Two overlapping views preserve row order and expose small print on wide receipts.
+ * Only the current selected page is used. Portrait pages keep the full-page path.
+ */
+export async function cropPageDetailRegions(image: PreparedPageImage): Promise<PreparedPageImage[]> {
+  if (image.width < image.height * 1.25) return []
+  const source = await loadImage(Buffer.from(image.data, 'base64'))
+  const width = Math.ceil(source.width * 0.6)
+  const regions: PreparedPageImage[] = []
+  for (const left of [0, source.width - width]) {
+    const canvas = createCanvas(width, source.height)
+    canvas.getContext('2d').drawImage(source, left, 0, width, source.height, 0, 0, width, source.height)
+    regions.push(await encodeCanvas(canvas, JPEG_QUALITY, 'png'))
+  }
+  return regions
 }
 
 /** A bounded header-only retry uses the already selected page, never another page. */
@@ -60,12 +78,13 @@ function targetDimensions(
 
 async function encodeCanvas(
   canvas: Canvas,
-  jpegQuality = JPEG_QUALITY
+  jpegQuality = JPEG_QUALITY,
+  imageFormat: 'jpeg' | 'png' = 'jpeg'
 ): Promise<PreparedPageImage> {
-  const buffer = await canvas.encode('jpeg', jpegQuality)
+  const buffer = imageFormat === 'png' ? await canvas.encode('png') : await canvas.encode('jpeg', jpegQuality)
   return {
     data: buffer.toString('base64'),
-    mimeType: 'image/jpeg',
+    mimeType: imageFormat === 'png' ? 'image/png' : 'image/jpeg',
     width: canvas.width,
     height: canvas.height
   }
@@ -109,7 +128,7 @@ async function preparePdf(contents: Buffer, maxPages: number): Promise<PreparedD
         viewport
       }).promise
       page.cleanup()
-      return encodeCanvas(canvas, options.jpegQuality)
+      return encodeCanvas(canvas, options.jpegQuality, options.imageFormat)
     },
     async dispose(): Promise<void> {
       await loadingTask.destroy()
@@ -133,7 +152,7 @@ async function prepareImage(contents: Buffer): Promise<PreparedDocument> {
       context.fillStyle = '#ffffff'
       context.fillRect(0, 0, canvas.width, canvas.height)
       context.drawImage(image, 0, 0, canvas.width, canvas.height)
-      return encodeCanvas(canvas, options.jpegQuality)
+      return { ...await encodeCanvas(canvas, options.jpegQuality, options.imageFormat), sourceWidth: image.width }
     },
     async dispose(): Promise<void> {}
   }

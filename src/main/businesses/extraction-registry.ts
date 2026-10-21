@@ -31,6 +31,9 @@ import {
   createPurchaseOrderSubmissionTool,
   mergePurchaseOrderExtractions,
   normalizePurchaseOrderSubmission,
+  purchaseOrderOcrPrompt,
+  needsPurchaseOrderHeaderOcr,
+  needsPurchaseOrderDetailOcr,
   purchaseOrderSystemPrompt,
   type PurchaseOrderSubmission
 } from './purchase-order-tool'
@@ -41,6 +44,8 @@ export interface BusinessExtractionAdapter {
   systemPrompt: string
   ocrPrompt?: string
   ocrImageScale?: number
+  ocrImageFormat?: 'jpeg' | 'png'
+  needsDetailOcr?: (text: string, sourceWidth?: number) => boolean
   needsHeaderOcr?: (text: string) => boolean
   createSubmissionTool: (submit: (submission: unknown) => void) => AgentTool
   normalize: (submission: unknown, pageCount: number) => BusinessExtraction
@@ -95,6 +100,11 @@ const adapters: Record<BusinessId, BusinessExtractionAdapter> = {
   'purchase-order': {
     id: 'purchase-order',
     submissionToolName: 'submit_purchase_order',
+    ocrPrompt: purchaseOrderOcrPrompt(),
+    ocrImageScale: 3,
+    ocrImageFormat: 'png',
+    needsDetailOcr: needsPurchaseOrderDetailOcr,
+    needsHeaderOcr: needsPurchaseOrderHeaderOcr,
     systemPrompt: purchaseOrderSystemPrompt(),
     createSubmissionTool: (submit) =>
       createPurchaseOrderSubmissionTool((submission) => submit(submission)) as AgentTool,
